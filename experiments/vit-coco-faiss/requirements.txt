@@ -1,0 +1,8 @@
+torch
+torchvision
+numpy
+faiss-cpu
+Pillow
+tqdm
+matplotlib
+jupyterlab

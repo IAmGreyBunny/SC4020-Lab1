@@ -1,0 +1,14 @@
+{
+  "algorithm": "Exact FlatIP",
+  "dataset_size": 123403,
+  "dimension": 768,
+  "num_queries": 200,
+  "k": 10,
+  "seed": 42,
+  "build_seconds": 1.1769647269993584,
+  "search_seconds": 0.4429440080002678,
+  "latency_ms_per_query": 2.214720040001339,
+  "queries_per_second": 451.5243380375045,
+  "index_size_mb": 361.53226947784424,
+  "faiss_threads": 1
+}
