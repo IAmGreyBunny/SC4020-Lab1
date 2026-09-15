@@ -1,239 +1,192 @@
-import joblib
+"""Run one exact cosine search using the ResNet18 `.npy` handoff files."""
 
-# import torch.nn as nn
-# from sklearn.metrics.pairwise import cosine_similarity
+import argparse
+from pathlib import Path
+
+import matplotlib
 import numpy as np
 import pandas as pd
-
-# import pandas as pd
-# from pandas.core.common import flatten
-
-# from extract_features import *
-from common import *
-
-from pathlib import Path
-import matplotlib.pyplot as plt
 from PIL import Image
 
-
-EMBEDDINGS_PATH = Path(
-    "output/zappos_embeddings_N50025.pkl"
-)
-
-QUERY_INDEX = 0
-TOP_K = 10
-#select the first image in the saved sample to be used as the query image for the search
-QUERY_INDEX = 0
-#specifies how many similar images to retrieve
-TOP_K = 20
+from common import IMAGE_ROOT, prepare_data
 
 
-def get_subcategory(path):
-    """Read the subcategory from the Zappos directory structure."""
-    return Path(path).relative_to(IMAGE_ROOT).parts[1]
+# Generate a PNG without opening a blocking GUI window.
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 
-def calculate_metrics(query_index, top_indices, labels):
-    """Calculate precision and recall for one query and one label type."""
-    query_label = labels[query_index]
-    relevant_retrieved = sum(labels[index] == query_label for index in top_indices)
-    relevant_available = sum(label == query_label for label in labels) - 1
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--emb", default="data/zappos/resnet_embeddings.npy")
+    parser.add_argument("--ids", default="data/zappos/resnet_image_ids.npy")
+    parser.add_argument("--images-dir", default=str(IMAGE_ROOT))
+    parser.add_argument(
+        "--out-dir",
+        default="experiments/resnet18-zappos/results",
+    )
+    parser.add_argument("--query-id", type=int, default=None)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--ks", default="5,10,20")
+    return parser.parse_args()
 
-    precision = relevant_retrieved / len(top_indices)
+
+def metrics_at_k(query_row, result_rows, labels):
+    query_label = labels[query_row]
+    relevant_retrieved = int(np.count_nonzero(labels[result_rows] == query_label))
+    relevant_available = int(np.count_nonzero(labels == query_label) - 1)
+    precision = relevant_retrieved / len(result_rows)
     recall = relevant_retrieved / relevant_available if relevant_available else 0.0
-
     return precision, recall, relevant_retrieved, relevant_available
 
 
-def save_metrics(row):
-    """Save the result without duplicating the same N, K and query setting."""
-    output_path = Path("output/query_metrics.csv")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    new_result = pd.DataFrame([row])
-    if output_path.exists():
-        results = pd.read_csv(output_path)
-        same_run = (
-            (results["dataset_size"] == row["dataset_size"])
-            & (results["k"] == row["k"])
-            & (results["query_index"] == row["query_index"])
-        )
-        results = results.loc[~same_run]
-        new_result = pd.concat([results, new_result], ignore_index=True)
-
-    new_result.to_csv(output_path, index=False)
-    print("Metrics saved to:", output_path)
-
-# each image has a list of 512 numbers, so embedding matrix has shape (1000, 512) for 1000 images
-def find_similar_images(query_index, embeddings, top_k):
-    # embedding contains the representations of all 1000 images as matrix
-    query_embedding = embeddings[query_index]
-
-    # Embeddings were already normalized, so their dot product
-    # is equivalent to cosine similarity.
-    similarity_scores = embeddings @ query_embedding
-
-    # exclude the query image itself from the results by setting its similarity score to negative infinity
-    similarity_scores[query_index] = -np.inf
-
-    #sort the scores in descending order and retrieve the indices of the top_k most similar images
-    top_indices = np.argsort(similarity_scores)[::-1][:top_k]
-
-    return top_indices, similarity_scores[top_indices]
-
-def display_results(
-    query_index,
-    top_indices,
-    similarity_scores,
-    paths,
-    categories,
-):
-    #[Query] [Rank 1] [Rank 2] [Rank 3] [Rank 4] [Rank 5]
-    #[Rank 6] [Rank 7] [Rank 8] [Rank 9] [Rank 10] [Unused]
-    total_images = len(top_indices) + 1
+def save_result_grid(output_path, query_row, result_rows, scores, dataframe):
+    total_images = len(result_rows) + 1
     columns = 5
     rows = int(np.ceil(total_images / columns))
-
-    fig, axes = plt.subplots(
-        rows,
-        columns,
-        figsize=(15, rows * 3.5),
-    )
-
+    figure, axes = plt.subplots(rows, columns, figsize=(15, rows * 3.5))
     axes = np.atleast_1d(axes).ravel()
 
-    query_image = Image.open(paths[query_index]).convert("RGB")
-
-    axes[0].imshow(query_image)
+    query = dataframe.iloc[query_row]
+    with Image.open(query["image"]) as image:
+        axes[0].imshow(image.convert("RGB"))
     axes[0].set_title(
-        f"Query\n{categories[query_index]}"
+        f"Query ID {query_row}\n{query['category']} / {query['subcategory']}"
     )
     axes[0].axis("off")
-    # connect the result index to its similarity score
-    for position, (image_index, score) in enumerate(
-        zip(top_indices, similarity_scores),
-        start=1,
-    ):
-        image = Image.open(paths[image_index]).convert("RGB")
 
-        axes[position].imshow(image)
-        axes[position].set_title(
-            f"Rank {position}\n"
-            f"{categories[image_index]}\n"
-            f"Score: {score:.3f}"
+    for rank, (result_row, score) in enumerate(zip(result_rows, scores), start=1):
+        result = dataframe.iloc[result_row]
+        with Image.open(result["image"]) as image:
+            axes[rank].imshow(image.convert("RGB"))
+        axes[rank].set_title(
+            f"Rank {rank}\n{result['category']} / {result['subcategory']}"
+            f"\nScore: {score:.3f}"
         )
-        axes[position].axis("off")
+        axes[rank].axis("off")
 
-    # Hide any unused subplot.
-    for axis in axes[len(top_indices) + 1:]:
+    for axis in axes[total_images:]:
         axis.axis("off")
 
-    plt.tight_layout()
+    figure.tight_layout()
+    figure.savefig(output_path, dpi=150)
+    plt.close(figure)
 
-    RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(RESULT_PATH, dpi=150)
-    plt.show()
-
-    print("Result saved to:", RESULT_PATH)
 
 def main():
-    data = joblib.load(EMBEDDINGS_PATH)
+    args = parse_args()
+    k_values = tuple(sorted(set(int(value) for value in args.ks.split(","))))
+    embeddings = np.load(args.emb, mmap_mode="r")
+    image_ids = np.load(args.ids, mmap_mode="r")
+    dataframe = prepare_data(image_root=args.images_dir)
 
-    embeddings = data["embeddings"]
-    paths = data["paths"]
-    categories = data["categories"]
-    subcategories = [get_subcategory(path) for path in paths]
+    if embeddings.shape != (len(image_ids), 512):
+        raise RuntimeError(
+            f"Expected ({len(image_ids)}, 512) embeddings, got {embeddings.shape}"
+        )
+    if len(dataframe) != len(image_ids):
+        raise RuntimeError(
+            "Sorted image count does not match embedding/image-ID row count"
+        )
+    if not np.array_equal(image_ids, np.arange(len(image_ids), dtype=np.int64)):
+        raise RuntimeError("Image IDs do not match deterministic sorted row IDs")
 
-    print("Loaded embeddings:", embeddings.shape)
-    print("Query image:", paths[QUERY_INDEX])
-    print("Query category:", categories[QUERY_INDEX])
-    print("Query subcategory:", subcategories[QUERY_INDEX])
+    if args.query_id is None:
+        # Reproducible random nonzero ID, so this does not reuse query 0.
+        rng = np.random.default_rng(args.seed)
+        query_id = int(rng.integers(1, len(image_ids)))
+    else:
+        query_id = args.query_id
 
-    #perform the search, calling similarity search function and receive the top image positions and scores
-    top_indices, scores = find_similar_images(
-        QUERY_INDEX,
-        embeddings,
-        TOP_K,
-    )
+    matching_rows = np.flatnonzero(image_ids == query_id)
+    if len(matching_rows) != 1:
+        raise RuntimeError(f"Expected exactly one row for query ID {query_id}")
+    query_row = int(matching_rows[0])
 
-    print("\nTop results:")
+    scores = embeddings @ embeddings[query_row]
+    scores[query_row] = -np.inf
+    max_k = max(k_values)
+    result_rows = np.argsort(scores)[::-1][:max_k]
+    result_scores = scores[result_rows]
 
-    for rank, (index, score) in enumerate(
-        zip(top_indices, scores),
-        start=1,
-    ):
+    categories = dataframe["category"].to_numpy()
+    subcategories = dataframe["subcategory"].to_numpy()
+    query = dataframe.iloc[query_row]
+    summary_rows = []
+
+    print(f"Database: {len(embeddings)} images")
+    print(f"Query ID: {query_id}")
+    print(f"Query image: {query['image']}")
+    print(f"Query label: {query['category']} / {query['subcategory']}")
+    print(f"\nTop {max_k} results:")
+
+    for rank, (row, score) in enumerate(zip(result_rows, result_scores), start=1):
+        result = dataframe.iloc[row]
         print(
-            f"{rank}. {categories[index]} "
-            f"| similarity={score:.4f} "
-            f"| {paths[index]}"
+            f"{rank}. ID {int(image_ids[row])} | similarity={score:.4f} | "
+            f"{result['category']} / {result['subcategory']} | {result['image']}"
         )
 
-    category_precision, category_recall, category_hits, category_total = calculate_metrics(
-        QUERY_INDEX, top_indices, categories
+    for k in k_values:
+        top_rows = result_rows[:k]
+        category_precision, category_recall, category_hits, category_total = metrics_at_k(
+            query_row, top_rows, categories
+        )
+        subcategory_precision, subcategory_recall, subcategory_hits, subcategory_total = metrics_at_k(
+            query_row, top_rows, subcategories
+        )
+        summary_rows.append(
+            {
+                "dataset_size": len(embeddings),
+                "query_id": query_id,
+                "query_row": query_row,
+                "query_category": query["category"],
+                "query_subcategory": query["subcategory"],
+                "k": k,
+                "category_hits": category_hits,
+                "category_relevant_available": category_total,
+                "category_precision": category_precision,
+                "category_recall": category_recall,
+                "subcategory_hits": subcategory_hits,
+                "subcategory_relevant_available": subcategory_total,
+                "subcategory_precision": subcategory_precision,
+                "subcategory_recall": subcategory_recall,
+            }
+        )
+
+    output_directory = Path(args.out_dir)
+    output_directory.mkdir(parents=True, exist_ok=True)
+    summary_path = output_directory / (
+        f"single_query_summary_N{len(embeddings)}_Q{query_id}.csv"
     )
-    subcategory_precision, subcategory_recall, subcategory_hits, subcategory_total = calculate_metrics(
-        QUERY_INDEX, top_indices, subcategories
+    image_path = output_directory / (
+        f"single_query_top{max_k}_N{len(embeddings)}_Q{query_id}.png"
+    )
+    summary = pd.DataFrame(summary_rows)
+    summary.to_csv(summary_path, index=False)
+    save_result_grid(
+        image_path,
+        query_row,
+        result_rows,
+        result_scores,
+        dataframe,
     )
 
-    print(f"\nCategory Precision@{TOP_K}: {category_precision:.2%} ({category_hits}/{TOP_K})")
-    print(f"Category Recall@{TOP_K}: {category_recall:.2%} ({category_hits}/{category_total})")
-    print(f"Subcategory Precision@{TOP_K}: {subcategory_precision:.2%} ({subcategory_hits}/{TOP_K})")
-    print(f"Subcategory Recall@{TOP_K}: {subcategory_recall:.2%} ({subcategory_hits}/{subcategory_total})")
-
-    save_metrics({
-        "dataset_size": len(paths),
-        "k": TOP_K,
-        "query_index": QUERY_INDEX,
-        "query_category": categories[QUERY_INDEX],
-        "query_subcategory": subcategories[QUERY_INDEX],
-        "category_precision": category_precision,
-        "category_recall": category_recall,
-        "subcategory_precision": subcategory_precision,
-        "subcategory_recall": subcategory_recall,
-    })
-
-    global RESULT_PATH
-    RESULT_PATH = Path(
-        f"output/search_N{len(paths)}_K{TOP_K}_Q{QUERY_INDEX}.png"
+    print("\nSingle-query summary:")
+    print(
+        summary[
+            [
+                "k",
+                "category_precision",
+                "category_recall",
+                "subcategory_precision",
+                "subcategory_recall",
+            ]
+        ].to_string(index=False)
     )
-
-    display_results(
-        QUERY_INDEX,
-        top_indices,
-        scores,
-        paths,
-        categories,
-    )
+    print(f"\nSummary saved to: {summary_path}")
+    print(f"Result image saved to: {image_path}")
 
 
 if __name__ == "__main__":
     main()
-
-
-# device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-
-
-# def recommend(filename, model, embeddings, n=10):
-#     embedding = get_embedding(model, filename)
-#     print(embedding)
-#     similarity_scores = cosine_similarity(embedding.unsqueeze(0), embeddings)
-#     similarity_scores = list(flatten(similarity_scores))
-#     similarity_scores_df = pd.DataFrame(similarity_scores, columns=['Score'])
-#     similarity_scores_df = similarity_scores_df.sort_values(by=['Score'], ascending=False)
-
-#     print(similarity_scores_df['Score'][:10])
-
-#     topN = similarity_scores_df[:n].index
-#     topN = list(flatten(topN))
-#     images = list(flatten([df[df.index==i]['image'] for i in topN]))
-    
-#     return images
-
-
-# if __name__ == '__main__':
-#     df = prepare_data()
-#     embeddings = joblib.load('output/embeddings.pkl')
-#     model = get_model(device)
-
-#     recommendations = recommend('output/56913.jpg', model, embeddings)
-#     show_recommendations('output/56913.jpg', recommendations, 'output/recommendations.png')
