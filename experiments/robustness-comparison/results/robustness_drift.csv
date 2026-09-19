@@ -1,0 +1,529 @@
+model,query,image_id,transform,level,label,cosine
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,5.0,rotation_5deg,0.955469
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,10.0,rotation_10deg,0.886922
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,20.0,rotation_20deg,0.807237
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,45.0,rotation_45deg,0.802699
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,90.0,rotation_90deg,0.819256
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,180.0,rotation_180deg,0.857722
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.9,crop_0.9x,0.945018
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.8,crop_0.8x,0.784324
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.7,crop_0.7x,0.752319
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.5,crop_0.5x,0.676851
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.3,crop_0.3x,0.638141
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.2,brightness_0.2x,0.919725
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.4,brightness_0.4x,0.953003
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.6,brightness_0.6x,0.976021
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.8,brightness_0.8x,0.988666
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,1.2,brightness_1.2x,0.995649
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,1.5,brightness_1.5x,0.978149
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,2.0,brightness_2x,0.93431
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,3.0,brightness_3x,0.85486
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,0.5,blur_0.5px,0.975616
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,1.0,blur_1px,0.915295
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,2.0,blur_2px,0.792799
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,4.0,blur_4px,0.53594
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,0.2,saturation_0.2x,0.971428
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,0.4,saturation_0.4x,0.983781
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,0.7,saturation_0.7x,0.995319
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,1.3,saturation_1.3x,0.996384
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,1.7,saturation_1.7x,0.987309
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,2.5,saturation_2.5x,0.961564
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,-0.3,hue_-0.3,0.91834
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,-0.15,hue_-0.15,0.933565
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,0.15,hue_0.15,0.921984
+resnet18,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,0.3,hue_0.3,0.890267
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,5.0,rotation_5deg,0.951194
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,10.0,rotation_10deg,0.867527
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,20.0,rotation_20deg,0.773573
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,45.0,rotation_45deg,0.77915
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,90.0,rotation_90deg,0.814098
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,180.0,rotation_180deg,0.855391
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.9,crop_0.9x,0.974863
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.8,crop_0.8x,0.949143
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.7,crop_0.7x,0.924964
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.5,crop_0.5x,0.794387
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.3,crop_0.3x,0.756684
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.2,brightness_0.2x,0.835493
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.4,brightness_0.4x,0.918099
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.6,brightness_0.6x,0.949212
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.8,brightness_0.8x,0.976085
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,1.2,brightness_1.2x,0.968071
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,1.5,brightness_1.5x,0.88546
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,2.0,brightness_2x,0.822097
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,3.0,brightness_3x,0.738765
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,0.5,blur_0.5px,0.994607
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,1.0,blur_1px,0.923982
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,2.0,blur_2px,0.834651
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,4.0,blur_4px,0.718513
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,0.2,saturation_0.2x,0.933593
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,0.4,saturation_0.4x,0.963749
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,0.7,saturation_0.7x,0.992045
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,1.3,saturation_1.3x,0.99586
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,1.7,saturation_1.7x,0.985002
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,2.5,saturation_2.5x,0.960253
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,-0.3,hue_-0.3,0.876831
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,-0.15,hue_-0.15,0.922817
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,0.15,hue_0.15,0.95311
+resnet18,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,0.3,hue_0.3,0.911574
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,5.0,rotation_5deg,0.930394
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,10.0,rotation_10deg,0.859944
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,20.0,rotation_20deg,0.817798
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,45.0,rotation_45deg,0.786261
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,90.0,rotation_90deg,0.825276
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,180.0,rotation_180deg,0.833273
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.9,crop_0.9x,0.984803
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.8,crop_0.8x,0.961449
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.7,crop_0.7x,0.902481
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.5,crop_0.5x,0.794308
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.3,crop_0.3x,0.762974
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.2,brightness_0.2x,0.894808
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.4,brightness_0.4x,0.951616
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.6,brightness_0.6x,0.975511
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.8,brightness_0.8x,0.989089
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,1.2,brightness_1.2x,0.993689
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,1.5,brightness_1.5x,0.987679
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,2.0,brightness_2x,0.978577
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,3.0,brightness_3x,0.950404
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,0.5,blur_0.5px,0.993802
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,1.0,blur_1px,0.947673
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,2.0,blur_2px,0.857483
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,4.0,blur_4px,0.722044
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,0.2,saturation_0.2x,0.999412
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,0.4,saturation_0.4x,0.999626
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,0.7,saturation_0.7x,0.999904
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,1.3,saturation_1.3x,0.999817
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,1.7,saturation_1.7x,0.999063
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,2.5,saturation_2.5x,0.996682
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,-0.3,hue_-0.3,0.998794
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,-0.15,hue_-0.15,0.999128
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,0.15,hue_0.15,0.999103
+resnet18,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,0.3,hue_0.3,0.998634
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,5.0,rotation_5deg,0.926017
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,10.0,rotation_10deg,0.885492
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,20.0,rotation_20deg,0.846259
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,45.0,rotation_45deg,0.83505
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,90.0,rotation_90deg,0.797927
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,180.0,rotation_180deg,0.792782
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.9,crop_0.9x,0.964595
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.8,crop_0.8x,0.919882
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.7,crop_0.7x,0.854685
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.5,crop_0.5x,0.725028
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.3,crop_0.3x,0.654847
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.2,brightness_0.2x,0.915204
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.4,brightness_0.4x,0.948962
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.6,brightness_0.6x,0.970858
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.8,brightness_0.8x,0.986554
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,1.2,brightness_1.2x,0.98979
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,1.5,brightness_1.5x,0.96174
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,2.0,brightness_2x,0.945235
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,3.0,brightness_3x,0.921483
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,0.5,blur_0.5px,0.989804
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,1.0,blur_1px,0.93415
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,2.0,blur_2px,0.792493
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,4.0,blur_4px,0.589815
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,0.2,saturation_0.2x,0.997257
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,0.4,saturation_0.4x,0.998086
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,0.7,saturation_0.7x,0.999408
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,1.3,saturation_1.3x,0.999426
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,1.7,saturation_1.7x,0.998128
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,2.5,saturation_2.5x,0.993578
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,-0.3,hue_-0.3,0.996077
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,-0.15,hue_-0.15,0.997741
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,0.15,hue_0.15,0.99818
+resnet18,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,0.3,hue_0.3,0.996633
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,5.0,rotation_5deg,0.960813
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,10.0,rotation_10deg,0.909194
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,20.0,rotation_20deg,0.85621
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,45.0,rotation_45deg,0.792127
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,90.0,rotation_90deg,0.853947
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,180.0,rotation_180deg,0.840891
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.9,crop_0.9x,0.955809
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.8,crop_0.8x,0.911242
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.7,crop_0.7x,0.872765
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.5,crop_0.5x,0.766143
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.3,crop_0.3x,0.733603
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.2,brightness_0.2x,0.906842
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.4,brightness_0.4x,0.95304
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.6,brightness_0.6x,0.97338
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.8,brightness_0.8x,0.987221
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,1.2,brightness_1.2x,0.982355
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,1.5,brightness_1.5x,0.94932
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,2.0,brightness_2x,0.81854
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,3.0,brightness_3x,0.579887
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,0.5,blur_0.5px,0.992458
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,1.0,blur_1px,0.941737
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,2.0,blur_2px,0.891078
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,4.0,blur_4px,0.639717
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,0.2,saturation_0.2x,0.980482
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,0.4,saturation_0.4x,0.990591
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,0.7,saturation_0.7x,0.99805
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,1.3,saturation_1.3x,0.999123
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,1.7,saturation_1.7x,0.99577
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,2.5,saturation_2.5x,0.988264
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,-0.3,hue_-0.3,0.975461
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,-0.15,hue_-0.15,0.991051
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,0.15,hue_0.15,0.988453
+resnet18,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,0.3,hue_0.3,0.974536
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,5.0,rotation_5deg,0.942156
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,10.0,rotation_10deg,0.881933
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,20.0,rotation_20deg,0.846827
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,45.0,rotation_45deg,0.802167
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,90.0,rotation_90deg,0.806249
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,180.0,rotation_180deg,0.831478
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.9,crop_0.9x,0.979034
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.8,crop_0.8x,0.962197
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.7,crop_0.7x,0.9263
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.5,crop_0.5x,0.822521
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.3,crop_0.3x,0.504476
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.2,brightness_0.2x,0.906009
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.4,brightness_0.4x,0.957781
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.6,brightness_0.6x,0.975468
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.8,brightness_0.8x,0.988227
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,1.2,brightness_1.2x,0.996737
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,1.5,brightness_1.5x,0.991201
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,2.0,brightness_2x,0.979944
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,3.0,brightness_3x,0.939254
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,0.5,blur_0.5px,0.993821
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,1.0,blur_1px,0.923641
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,2.0,blur_2px,0.797678
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,4.0,blur_4px,0.641891
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,0.2,saturation_0.2x,0.961057
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,0.4,saturation_0.4x,0.981427
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,0.7,saturation_0.7x,0.995657
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,1.3,saturation_1.3x,0.997491
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,1.7,saturation_1.7x,0.989019
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,2.5,saturation_2.5x,0.961936
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,-0.3,hue_-0.3,0.950502
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,-0.15,hue_-0.15,0.951988
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,0.15,hue_0.15,0.922057
+resnet18,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,0.3,hue_0.3,0.928061
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,5.0,rotation_5deg,0.934422
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,10.0,rotation_10deg,0.859745
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,20.0,rotation_20deg,0.8272
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,45.0,rotation_45deg,0.744586
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,90.0,rotation_90deg,0.834783
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,180.0,rotation_180deg,0.826266
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.9,crop_0.9x,0.95926
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.8,crop_0.8x,0.94434
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.7,crop_0.7x,0.924758
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.5,crop_0.5x,0.870541
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.3,crop_0.3x,0.748022
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.2,brightness_0.2x,0.910681
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.4,brightness_0.4x,0.959094
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.6,brightness_0.6x,0.974678
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.8,brightness_0.8x,0.988537
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,1.2,brightness_1.2x,0.991267
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,1.5,brightness_1.5x,0.970617
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,2.0,brightness_2x,0.892214
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,3.0,brightness_3x,0.713283
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,0.5,blur_0.5px,0.992455
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,1.0,blur_1px,0.942339
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,2.0,blur_2px,0.847151
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,4.0,blur_4px,0.722599
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,0.2,saturation_0.2x,0.98779
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,0.4,saturation_0.4x,0.992153
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,0.7,saturation_0.7x,0.997717
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,1.3,saturation_1.3x,0.998437
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,1.7,saturation_1.7x,0.993464
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,2.5,saturation_2.5x,0.977551
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,-0.3,hue_-0.3,0.979131
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,-0.15,hue_-0.15,0.99009
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,0.15,hue_0.15,0.973419
+resnet18,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,0.3,hue_0.3,0.967973
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,5.0,rotation_5deg,0.924964
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,10.0,rotation_10deg,0.878756
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,20.0,rotation_20deg,0.827128
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,45.0,rotation_45deg,0.821754
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,90.0,rotation_90deg,0.834798
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,180.0,rotation_180deg,0.898162
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.9,crop_0.9x,0.968415
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.8,crop_0.8x,0.952154
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.7,crop_0.7x,0.92763
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.5,crop_0.5x,0.852747
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.3,crop_0.3x,0.733298
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.2,brightness_0.2x,0.90023
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.4,brightness_0.4x,0.934826
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.6,brightness_0.6x,0.957166
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.8,brightness_0.8x,0.977229
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,1.2,brightness_1.2x,0.988289
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,1.5,brightness_1.5x,0.961463
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,2.0,brightness_2x,0.880054
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,3.0,brightness_3x,0.709829
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,0.5,blur_0.5px,0.992117
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,1.0,blur_1px,0.935825
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,2.0,blur_2px,0.831584
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,4.0,blur_4px,0.645507
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,0.2,saturation_0.2x,0.974779
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,0.4,saturation_0.4x,0.988334
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,0.7,saturation_0.7x,0.99778
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,1.3,saturation_1.3x,0.998516
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,1.7,saturation_1.7x,0.989845
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,2.5,saturation_2.5x,0.953528
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,-0.3,hue_-0.3,0.959699
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,-0.15,hue_-0.15,0.959836
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,0.15,hue_0.15,0.939198
+resnet18,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,0.3,hue_0.3,0.945292
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,5.0,rotation_5deg,0.950273
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,10.0,rotation_10deg,0.903127
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,20.0,rotation_20deg,0.894649
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,45.0,rotation_45deg,0.802425
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,90.0,rotation_90deg,0.585178
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,rotation,180.0,rotation_180deg,0.714141
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.9,crop_0.9x,0.961908
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.8,crop_0.8x,0.868752
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.7,crop_0.7x,0.891311
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.5,crop_0.5x,0.616296
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,crop,0.3,crop_0.3x,0.399928
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.2,brightness_0.2x,0.551876
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.4,brightness_0.4x,0.981297
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.6,brightness_0.6x,0.993722
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,0.8,brightness_0.8x,0.997945
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,1.2,brightness_1.2x,0.997115
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,1.5,brightness_1.5x,0.9884
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,2.0,brightness_2x,0.955337
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,brightness,3.0,brightness_3x,0.890611
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,0.5,blur_0.5px,0.987201
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,1.0,blur_1px,0.8569
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,2.0,blur_2px,0.777717
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,blur,4.0,blur_4px,0.359911
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,0.2,saturation_0.2x,0.949552
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,0.4,saturation_0.4x,0.978412
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,0.7,saturation_0.7x,0.99629
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,1.3,saturation_1.3x,0.996991
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,1.7,saturation_1.7x,0.987289
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,saturation,2.5,saturation_2.5x,0.960842
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,-0.3,hue_-0.3,0.838324
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,-0.15,hue_-0.15,0.884206
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,0.15,hue_0.15,0.867139
+vit,0,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg,hue,0.3,hue_0.3,0.808799
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,5.0,rotation_5deg,0.92894
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,10.0,rotation_10deg,0.879159
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,20.0,rotation_20deg,0.803114
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,45.0,rotation_45deg,0.480635
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,90.0,rotation_90deg,0.426644
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,rotation,180.0,rotation_180deg,0.428659
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.9,crop_0.9x,0.961061
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.8,crop_0.8x,0.96333
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.7,crop_0.7x,0.92378
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.5,crop_0.5x,0.828641
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,crop,0.3,crop_0.3x,0.552156
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.2,brightness_0.2x,0.601971
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.4,brightness_0.4x,0.951499
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.6,brightness_0.6x,0.979808
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,0.8,brightness_0.8x,0.994878
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,1.2,brightness_1.2x,0.973555
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,1.5,brightness_1.5x,0.672712
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,2.0,brightness_2x,0.305268
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,brightness,3.0,brightness_3x,0.264832
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,0.5,blur_0.5px,0.9927
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,1.0,blur_1px,0.900306
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,2.0,blur_2px,0.539465
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,blur,4.0,blur_4px,0.24882
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,0.2,saturation_0.2x,0.922209
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,0.4,saturation_0.4x,0.958585
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,0.7,saturation_0.7x,0.989903
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,1.3,saturation_1.3x,0.994001
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,1.7,saturation_1.7x,0.975644
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,saturation,2.5,saturation_2.5x,0.925738
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,-0.3,hue_-0.3,0.863776
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,-0.15,hue_-0.15,0.893327
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,0.15,hue_0.15,0.91136
+vit,1,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg,hue,0.3,hue_0.3,0.891851
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,5.0,rotation_5deg,0.899171
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,10.0,rotation_10deg,0.882113
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,20.0,rotation_20deg,0.810716
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,45.0,rotation_45deg,0.536218
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,90.0,rotation_90deg,0.519682
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,rotation,180.0,rotation_180deg,0.628228
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.9,crop_0.9x,0.949638
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.8,crop_0.8x,0.94722
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.7,crop_0.7x,0.909353
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.5,crop_0.5x,0.688895
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,crop,0.3,crop_0.3x,0.604446
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.2,brightness_0.2x,0.48964
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.4,brightness_0.4x,0.958307
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.6,brightness_0.6x,0.982732
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,0.8,brightness_0.8x,0.995752
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,1.2,brightness_1.2x,0.988156
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,1.5,brightness_1.5x,0.974718
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,2.0,brightness_2x,0.94267
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,brightness,3.0,brightness_3x,0.881854
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,0.5,blur_0.5px,0.982064
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,1.0,blur_1px,0.862194
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,2.0,blur_2px,0.741522
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,blur,4.0,blur_4px,0.557408
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,0.2,saturation_0.2x,0.993424
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,0.4,saturation_0.4x,0.995588
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,0.7,saturation_0.7x,0.999045
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,1.3,saturation_1.3x,0.998017
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,1.7,saturation_1.7x,0.990114
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,saturation,2.5,saturation_2.5x,0.978705
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,-0.3,hue_-0.3,0.99133
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,-0.15,hue_-0.15,0.995443
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,0.15,hue_0.15,0.996195
+vit,2,archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg,hue,0.3,hue_0.3,0.995295
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,5.0,rotation_5deg,0.934842
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,10.0,rotation_10deg,0.862158
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,20.0,rotation_20deg,0.807871
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,45.0,rotation_45deg,0.38012
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,90.0,rotation_90deg,0.310828
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,rotation,180.0,rotation_180deg,0.344462
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.9,crop_0.9x,0.965592
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.8,crop_0.8x,0.848202
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.7,crop_0.7x,0.764786
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.5,crop_0.5x,0.319862
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,crop,0.3,crop_0.3x,0.2199
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.2,brightness_0.2x,0.589569
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.4,brightness_0.4x,0.968147
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.6,brightness_0.6x,0.988099
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,0.8,brightness_0.8x,0.996283
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,1.2,brightness_1.2x,0.986275
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,1.5,brightness_1.5x,0.898902
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,2.0,brightness_2x,0.856972
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,brightness,3.0,brightness_3x,0.759662
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,0.5,blur_0.5px,0.991017
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,1.0,blur_1px,0.910632
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,2.0,blur_2px,0.729226
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,blur,4.0,blur_4px,0.422389
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,0.2,saturation_0.2x,0.985447
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,0.4,saturation_0.4x,0.990334
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,0.7,saturation_0.7x,0.99721
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,1.3,saturation_1.3x,0.997258
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,1.7,saturation_1.7x,0.990421
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,saturation,2.5,saturation_2.5x,0.972509
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,-0.3,hue_-0.3,0.965864
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,-0.15,hue_-0.15,0.978496
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,0.15,hue_0.15,0.986506
+vit,3,archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg,hue,0.3,hue_0.3,0.98376
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,5.0,rotation_5deg,0.979516
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,10.0,rotation_10deg,0.966272
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,20.0,rotation_20deg,0.939574
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,45.0,rotation_45deg,0.666184
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,90.0,rotation_90deg,0.687877
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,rotation,180.0,rotation_180deg,0.702372
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.9,crop_0.9x,0.981178
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.8,crop_0.8x,0.980143
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.7,crop_0.7x,0.95694
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.5,crop_0.5x,0.843024
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,crop,0.3,crop_0.3x,0.331733
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.2,brightness_0.2x,0.529891
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.4,brightness_0.4x,0.984489
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.6,brightness_0.6x,0.993885
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,0.8,brightness_0.8x,0.998007
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,1.2,brightness_1.2x,0.992377
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,1.5,brightness_1.5x,0.974841
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,2.0,brightness_2x,0.920227
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,brightness,3.0,brightness_3x,0.64371
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,0.5,blur_0.5px,0.996046
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,1.0,blur_1px,0.957323
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,2.0,blur_2px,0.89496
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,blur,4.0,blur_4px,0.354295
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,0.2,saturation_0.2x,0.967546
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,0.4,saturation_0.4x,0.987392
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,0.7,saturation_0.7x,0.998546
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,1.3,saturation_1.3x,0.999428
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,1.7,saturation_1.7x,0.997849
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,saturation,2.5,saturation_2.5x,0.993221
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,-0.3,hue_-0.3,0.974024
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,-0.15,hue_-0.15,0.985663
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,0.15,hue_0.15,0.966352
+vit,4,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg,hue,0.3,hue_0.3,0.955333
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,5.0,rotation_5deg,0.955458
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,10.0,rotation_10deg,0.930481
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,20.0,rotation_20deg,0.950781
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,45.0,rotation_45deg,0.440522
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,90.0,rotation_90deg,0.408671
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,rotation,180.0,rotation_180deg,0.426399
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.9,crop_0.9x,0.961903
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.8,crop_0.8x,0.953913
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.7,crop_0.7x,0.933271
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.5,crop_0.5x,0.559559
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,crop,0.3,crop_0.3x,0.226142
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.2,brightness_0.2x,0.386389
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.4,brightness_0.4x,0.968135
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.6,brightness_0.6x,0.988174
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,0.8,brightness_0.8x,0.996468
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,1.2,brightness_1.2x,0.995223
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,1.5,brightness_1.5x,0.985942
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,2.0,brightness_2x,0.966589
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,brightness,3.0,brightness_3x,0.906693
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,0.5,blur_0.5px,0.983507
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,1.0,blur_1px,0.937111
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,2.0,blur_2px,0.773191
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,blur,4.0,blur_4px,0.441702
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,0.2,saturation_0.2x,0.943806
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,0.4,saturation_0.4x,0.978327
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,0.7,saturation_0.7x,0.995926
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,1.3,saturation_1.3x,0.997383
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,1.7,saturation_1.7x,0.983368
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,saturation,2.5,saturation_2.5x,0.921398
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,-0.3,hue_-0.3,0.792462
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,-0.15,hue_-0.15,0.81159
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,0.15,hue_0.15,0.824634
+vit,5,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg,hue,0.3,hue_0.3,0.803611
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,5.0,rotation_5deg,0.897292
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,10.0,rotation_10deg,0.867317
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,20.0,rotation_20deg,0.871268
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,45.0,rotation_45deg,0.350634
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,90.0,rotation_90deg,0.555478
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,rotation,180.0,rotation_180deg,0.44693
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.9,crop_0.9x,0.826365
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.8,crop_0.8x,0.826573
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.7,crop_0.7x,0.864254
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.5,crop_0.5x,0.630073
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,crop,0.3,crop_0.3x,0.289925
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.2,brightness_0.2x,0.324691
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.4,brightness_0.4x,0.972573
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.6,brightness_0.6x,0.988056
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,0.8,brightness_0.8x,0.996893
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,1.2,brightness_1.2x,0.990225
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,1.5,brightness_1.5x,0.917048
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,2.0,brightness_2x,0.733139
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,brightness,3.0,brightness_3x,0.617525
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,0.5,blur_0.5px,0.983024
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,1.0,blur_1px,0.878771
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,2.0,blur_2px,0.710332
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,blur,4.0,blur_4px,0.503532
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,0.2,saturation_0.2x,0.923973
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,0.4,saturation_0.4x,0.963804
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,0.7,saturation_0.7x,0.99343
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,1.3,saturation_1.3x,0.996924
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,1.7,saturation_1.7x,0.986533
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,saturation,2.5,saturation_2.5x,0.955717
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,-0.3,hue_-0.3,0.890788
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,-0.15,hue_-0.15,0.914072
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,0.15,hue_0.15,0.903154
+vit,6,archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg,hue,0.3,hue_0.3,0.84092
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,5.0,rotation_5deg,0.872204
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,10.0,rotation_10deg,0.852285
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,20.0,rotation_20deg,0.842034
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,45.0,rotation_45deg,0.571435
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,90.0,rotation_90deg,0.439559
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,rotation,180.0,rotation_180deg,0.537587
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.9,crop_0.9x,0.911544
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.8,crop_0.8x,0.906251
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.7,crop_0.7x,0.790776
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.5,crop_0.5x,0.749764
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,crop,0.3,crop_0.3x,0.373018
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.2,brightness_0.2x,0.534359
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.4,brightness_0.4x,0.971751
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.6,brightness_0.6x,0.986018
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,0.8,brightness_0.8x,0.99592
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,1.2,brightness_1.2x,0.988136
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,1.5,brightness_1.5x,0.956992
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,2.0,brightness_2x,0.893583
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,brightness,3.0,brightness_3x,0.514444
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,0.5,blur_0.5px,0.984575
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,1.0,blur_1px,0.90406
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,2.0,blur_2px,0.65093
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,blur,4.0,blur_4px,0.300892
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,0.2,saturation_0.2x,0.957001
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,0.4,saturation_0.4x,0.980003
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,0.7,saturation_0.7x,0.995328
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,1.3,saturation_1.3x,0.995044
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,1.7,saturation_1.7x,0.972483
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,saturation,2.5,saturation_2.5x,0.898883
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,-0.3,hue_-0.3,0.837303
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,-0.15,hue_-0.15,0.86802
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,0.15,hue_0.15,0.834327
+vit,7,archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg,hue,0.3,hue_0.3,0.811372

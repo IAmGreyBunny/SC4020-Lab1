@@ -1,0 +1,27 @@
+{
+  "models": [
+    "resnet18",
+    "vit"
+  ],
+  "transforms": [
+    "rotation",
+    "crop",
+    "brightness",
+    "blur",
+    "saturation",
+    "hue"
+  ],
+  "num_queries": 8,
+  "seed": 42,
+  "device": "cpu",
+  "image_ids": [
+    "archive/ut-zap50k-images/ut-zap50k-images/Shoes/Oxfords/Bass/7635940.691.jpg",
+    "archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Havaianas/7933395.129842.jpg",
+    "archive/ut-zap50k-images-square/ut-zap50k-images-square/Boots/Ankle/Michael Antonio/8067446.3.jpg",
+    "archive/ut-zap50k-images/ut-zap50k-images/Shoes/Sneakers and Athletic Shoes/Vans/7382137.91679.jpg",
+    "archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Sneakers and Athletic Shoes/ASICS/7786226.287014.jpg",
+    "archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Loafers/Keen Kids/7969283.325.jpg",
+    "archive/ut-zap50k-images-square/ut-zap50k-images-square/Shoes/Heels/Rockport/8087956.395385.jpg",
+    "archive/ut-zap50k-images-square/ut-zap50k-images-square/Sandals/Flat/Zigi/8098495.3.jpg"
+  ]
+}
