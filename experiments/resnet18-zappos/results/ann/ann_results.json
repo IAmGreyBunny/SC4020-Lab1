@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "dataset_size": 50025,
+    "gallery_size": 49025,
+    "num_queries": 1000,
+    "dimension": 512,
+    "seed": 42,
+    "k_gt": 20,
+    "recall_ks": [
+      5,
+      10,
+      20
+    ],
+    "embedding_file": "data/zappos/resnet_embeddings.npy",
+    "search_threads": 1,
+    "build_threads": 12
+  },
+  "results": [
+    {
+      "algorithm": "Exact FlatIP",
+      "parameters": {
+        "metric": "cosine"
+      },
+      "build_seconds": 0.13678099299431778,
+      "search_seconds": 0.6233157020178623,
+      "latency_ms_per_query": 0.6233157020178623,
+      "queries_per_second": 1604.3234540100564,
+      "index_size_mb": 95.75199604034424,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "recall_at_20": 1.0
+    },
+    {
+      "algorithm": "HNSW",
+      "parameters": {
+        "M": 32,
+        "efConstruction": 200,
+        "efSearch": 16
+      },
+      "build_seconds": 8.253575836017262,
+      "search_seconds": 0.10912888101302087,
+      "latency_ms_per_query": 0.10912888101302087,
+      "queries_per_second": 9163.477080651854,
+      "index_size_mb": 108.4800853729248,
+      "recall_at_5": 0.945,
+      "recall_at_10": 0.9285000000000001,
+      "recall_at_20": 0.89445
+    },
+    {
+      "algorithm": "HNSW",
+      "parameters": {
+        "M": 32,
+        "efConstruction": 200,
+        "efSearch": 32
+      },
+      "build_seconds": 8.253575836017262,
+      "search_seconds": 0.15672518499195576,
+      "latency_ms_per_query": 0.15672518499195576,
+      "queries_per_second": 6380.5954355793365,
+      "index_size_mb": 108.4800853729248,
+      "recall_at_5": 0.9822000000000001,
+      "recall_at_10": 0.9761,
+      "recall_at_20": 0.9623499999999999
+    },
+    {
+      "algorithm": "HNSW",
+      "parameters": {
+        "M": 32,
+        "efConstruction": 200,
+        "efSearch": 64
+      },
+      "build_seconds": 8.253575836017262,
+      "search_seconds": 0.26107146599679254,
+      "latency_ms_per_query": 0.26107146599679254,
+      "queries_per_second": 3830.368807950409,
+      "index_size_mb": 108.4800853729248,
+      "recall_at_5": 0.9936,
+      "recall_at_10": 0.9925,
+      "recall_at_20": 0.9893500000000001
+    },
+    {
+      "algorithm": "HNSW",
+      "parameters": {
+        "M": 32,
+        "efConstruction": 200,
+        "efSearch": 128
+      },
+      "build_seconds": 8.253575836017262,
+      "search_seconds": 0.45097780201467685,
+      "latency_ms_per_query": 0.45097780201467685,
+      "queries_per_second": 2217.404039694742,
+      "index_size_mb": 108.4800853729248,
+      "recall_at_5": 0.9987999999999999,
+      "recall_at_10": 0.9983,
+      "recall_at_20": 0.9973
+    },
+    {
+      "algorithm": "HNSW",
+      "parameters": {
+        "M": 32,
+        "efConstruction": 200,
+        "efSearch": 256
+      },
+      "build_seconds": 8.253575836017262,
+      "search_seconds": 0.7952233349788003,
+      "latency_ms_per_query": 0.7952233349788003,
+      "queries_per_second": 1257.5083703078944,
+      "index_size_mb": 108.4800853729248,
+      "recall_at_5": 0.9997999999999999,
+      "recall_at_10": 0.9996,
+      "recall_at_20": 0.9996499999999999
+    },
+    {
+      "algorithm": "IVF-PQ",
+      "parameters": {
+        "nlist": 256,
+        "nprobe": 1,
+        "m": 32,
+        "nbits": 8,
+        "train_sample": 49025
+      },
+      "build_seconds": 7.378427463991102,
+      "search_seconds": 0.06248614902142435,
+      "latency_ms_per_query": 0.06248614902142435,
+      "queries_per_second": 16003.546636505545,
+      "index_size_mb": 2.8722801208496094,
+      "recall_at_5": 0.2608000000000001,
+      "recall_at_10": 0.277,
+      "recall_at_20": 0.2934
+    },
+    {
+      "algorithm": "IVF-PQ",
+      "parameters": {
+        "nlist": 256,
+        "nprobe": 4,
+        "m": 32,
+        "nbits": 8,
+        "train_sample": 49025
+      },
+      "build_seconds": 7.378427463991102,
+      "search_seconds": 0.07672058101161383,
+      "latency_ms_per_query": 0.07672058101161383,
+      "queries_per_second": 13034.312133906047,
+      "index_size_mb": 2.8722801208496094,
+      "recall_at_5": 0.3214,
+      "recall_at_10": 0.35760000000000003,
+      "recall_at_20": 0.39535
+    },
+    {
+      "algorithm": "IVF-PQ",
+      "parameters": {
+        "nlist": 256,
+        "nprobe": 8,
+        "m": 32,
+        "nbits": 8,
+        "train_sample": 49025
+      },
+      "build_seconds": 7.378427463991102,
+      "search_seconds": 0.10205539999878965,
+      "latency_ms_per_query": 0.10205539999878965,
+      "queries_per_second": 9798.599584263642,
+      "index_size_mb": 2.8722801208496094,
+      "recall_at_5": 0.33340000000000003,
+      "recall_at_10": 0.3692,
+      "recall_at_20": 0.40975
+    },
+    {
+      "algorithm": "IVF-PQ",
+      "parameters": {
+        "nlist": 256,
+        "nprobe": 16,
+        "m": 32,
+        "nbits": 8,
+        "train_sample": 49025
+      },
+      "build_seconds": 7.378427463991102,
+      "search_seconds": 0.13660886100842617,
+      "latency_ms_per_query": 0.13660886100842617,
+      "queries_per_second": 7320.169369820886,
+      "index_size_mb": 2.8722801208496094,
+      "recall_at_5": 0.3376,
+      "recall_at_10": 0.3722,
+      "recall_at_20": 0.416
+    },
+    {
+      "algorithm": "IVF-PQ",
+      "parameters": {
+        "nlist": 256,
+        "nprobe": 32,
+        "m": 32,
+        "nbits": 8,
+        "train_sample": 49025
+      },
+      "build_seconds": 7.378427463991102,
+      "search_seconds": 0.23283829999854788,
+      "latency_ms_per_query": 0.23283829999854788,
+      "queries_per_second": 4294.826066013352,
+      "index_size_mb": 2.8722801208496094,
+      "recall_at_5": 0.3386,
+      "recall_at_10": 0.373,
+      "recall_at_20": 0.41695000000000004
+    },
+    {
+      "algorithm": "IVF-PQ",
+      "parameters": {
+        "nlist": 256,
+        "nprobe": 64,
+        "m": 32,
+        "nbits": 8,
+        "train_sample": 49025
+      },
+      "build_seconds": 7.378427463991102,
+      "search_seconds": 0.39068454000516795,
+      "latency_ms_per_query": 0.39068454000516795,
+      "queries_per_second": 2559.609858088503,
+      "index_size_mb": 2.8722801208496094,
+      "recall_at_5": 0.3386,
+      "recall_at_10": 0.373,
+      "recall_at_20": 0.4169
+    },
+    {
+      "algorithm": "LSH",
+      "parameters": {
+        "nbits": 256
+      },
+      "build_seconds": 0.3634647309954744,
+      "search_seconds": 0.09674295198055916,
+      "latency_ms_per_query": 0.09674295198055916,
+      "queries_per_second": 10336.67031579679,
+      "index_size_mb": 1.9962129592895508,
+      "recall_at_5": 0.22560000000000002,
+      "recall_at_10": 0.2294,
+      "recall_at_20": 0.241
+    },
+    {
+      "algorithm": "LSH",
+      "parameters": {
+        "nbits": 512
+      },
+      "build_seconds": 0.73762952798279,
+      "search_seconds": 0.17386757498024963,
+      "latency_ms_per_query": 0.17386757498024963,
+      "queries_per_second": 5751.503695347418,
+      "index_size_mb": 3.992337226867676,
+      "recall_at_5": 0.3768000000000001,
+      "recall_at_10": 0.38889999999999997,
+      "recall_at_20": 0.41014999999999996
+    }
+  ]
+}
