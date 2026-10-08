@@ -7,3 +7,4 @@ matplotlib==3.11.1
 opencv-python==5.0.0.93
 joblib==1.5.3
 kagglehub==1.0.2
+faiss-cpu==1.15.0
