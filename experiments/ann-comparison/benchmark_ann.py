@@ -1,7 +1,8 @@
-"""Benchmark ANN search methods on every team dataset with one protocol.
+"""Benchmark ANN search methods on every model x dataset configuration.
 
 Merges the two per-dataset benchmarks (experiments/vit-coco-faiss and
-experiments/resnet18-zappos) into a single script. Compares, on identical
+experiments/resnet18-zappos) into a single script and runs it on the full
+2x2 grid {ViT-B/16, ResNet18} x {COCO, Zappos}. Compares, on identical
 data:
 
 - Exact FlatIP : brute-force baseline, produces the ground truth
@@ -9,7 +10,7 @@ data:
 - IVF-PQ       : clustered + compressed ANN, nprobe sweep
 - LSH          : binary hashing (FAISS IndexLSH), nbits sweep
 
-Setup per dataset: 1,000 query vectors are held out (seed 42); the
+Setup per configuration: 1,000 query vectors are held out (seed 42); the
 remaining vectors form the gallery. IVF-PQ is trained only on gallery
 vectors. All vectors are L2-normalized, so inner product equals cosine
 similarity; on normalized vectors L2 ranking equals cosine ranking, so LSH
@@ -19,11 +20,13 @@ Accuracy metrics, all at K = 5/10/20 with the exact top-K as the relevant
 set: Recall@K, Precision@K (equal to Recall@K, since both lists hold K
 items) and mAP@K (rank-aware: misordered neighbours score lower).
 
-Dataset paths and data-forced settings (--pq-m) come from datasets.py:
-- coco   : ViT-B/16, 768-d, pq-m 48
-- zappos : ResNet18, 512-d, pq-m 32 (512 % 48 != 0)
+Configurations, embedding paths and data-forced settings come from
+datasets.py: vit-coco, resnet-coco, vit-zappos, resnet-zappos. pq-m is 48
+for 768-d ViT vectors and 32 for 512-d ResNet vectors (FAISS needs
+d % m == 0). The split depends only on the row count, so both models on a
+dataset are queried with the identical 1,000 queries.
 
-Outputs (in results/<dataset>/):
+Outputs (in results/<config>/):
 - ann_results.json / ann_results.csv      aggregate metrics per setting
 - per_query/exact_top20.npy               exact top-20 gallery rows
 - per_query/<setting>_top20.npy           top-20 for every ANN setting
@@ -31,7 +34,8 @@ Outputs (in results/<dataset>/):
 - per_query/gallery_rows.npy              gallery row -> original row
 
 After every run results/combined_ann_results.csv is rebuilt from all
-available results/*/ann_results.json, with a leading `dataset` column.
+available results/*/ann_results.json, with leading config/model/dataset
+columns.
 """
 
 import argparse
@@ -51,7 +55,7 @@ for _var in ("OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
 import faiss
 import numpy as np
 
-from datasets import DATASETS, RESULTS_DIR, results_dir
+from datasets import CONFIGS, RESULTS_DIR, results_dir
 
 METRIC_KS = (5, 10, 20)
 CSV_FIELDS = [
@@ -318,9 +322,10 @@ def run_benchmark(key, cfg, args):
 
     # ---------------- Save aggregate results ----------------
     metadata = {
-        "dataset": key,
-        "dataset_label": cfg["label"],
+        "config": key,
+        "label": cfg["label"],
         "model": cfg["model"],
+        "dataset": cfg["dataset"],
         "dataset_size": count,
         "gallery_size": int(len(gallery_rows)),
         "num_queries": args.num_queries,
@@ -341,28 +346,28 @@ def run_benchmark(key, cfg, args):
 
 
 def write_combined():
-    # Rebuild the cross-dataset table from whatever results exist, so a
-    # single-dataset run still refreshes it.
+    # Rebuild the cross-configuration table from whatever results exist,
+    # so a single-configuration run still refreshes it.
     combined = []
-    for key in DATASETS:
+    for key, cfg in CONFIGS.items():
         path = results_dir(key) / "ann_results.json"
         if not path.exists():
             continue
         for row in json.loads(path.read_text())["results"]:
-            combined.append({"dataset": key, **row})
+            combined.append({"config": key, "model": cfg["model"], "dataset": cfg["dataset"], **row})
     if not combined:
         return
     out_path = RESULTS_DIR / "combined_ann_results.csv"
-    write_csv(out_path, combined, ["dataset", *CSV_FIELDS])
+    write_csv(out_path, combined, ["config", "model", "dataset", *CSV_FIELDS])
     print(f"combined table: {out_path} ({len(combined)} rows)", flush=True)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", choices=[*DATASETS, "all"], default="all")
-    parser.add_argument("--emb", help="override the registry path (single dataset only)")
-    parser.add_argument("--ids", help="override the registry path (single dataset only)")
-    parser.add_argument("--pq-m", type=int, help="override the registry value (single dataset only)")
+    parser.add_argument("--config", choices=[*CONFIGS, "all"], default="all")
+    parser.add_argument("--emb", help="override the registry path (single config only)")
+    parser.add_argument("--ids", help="override the registry path (single config only)")
+    parser.add_argument("--pq-m", type=int, help="override the registry value (single config only)")
     parser.add_argument("--num-queries", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--k-gt", type=int, default=20)
@@ -379,13 +384,13 @@ def main():
     parser.add_argument("--lsh-nbits", default="256,512")
     args = parser.parse_args()
 
-    keys = list(DATASETS) if args.dataset == "all" else [args.dataset]
+    keys = list(CONFIGS) if args.config == "all" else [args.config]
     if len(keys) > 1 and (args.emb or args.ids or args.pq_m):
-        raise SystemExit("--emb/--ids/--pq-m need a single --dataset")
+        raise SystemExit("--emb/--ids/--pq-m need a single --config")
 
     for key in keys:
-        cfg = DATASETS[key]
-        if args.dataset == "all" and not (cfg["emb"].exists() and cfg["ids"].exists()):
+        cfg = CONFIGS[key]
+        if args.config == "all" and not (cfg["emb"].exists() and cfg["ids"].exists()):
             print(f"skipping {key}: embeddings not found at {cfg['emb']}", flush=True)
             continue
         run_benchmark(key, cfg, args)

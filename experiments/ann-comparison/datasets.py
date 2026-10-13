@@ -1,8 +1,13 @@
-"""Dataset registry shared by benchmark_ann.py and compare_methods.ipynb.
+"""Registry of the 2x2 model x dataset configurations.
 
-Paths are relative to the repository root. Each entry describes one
-embedding set; the benchmark protocol is identical for all of them, only
-the data-forced settings (dimension, PQ sub-quantizers) differ.
+Shared by benchmark_ann.py and compare_methods.ipynb. Paths are absolute,
+resolved from the repository root. Every configuration uses the same
+benchmark protocol; only the data-forced settings (dimension, PQ
+sub-quantizers) differ. Embeddings come from pipeline/extract_embeddings.py.
+
+Both models on one dataset have the same row count and order, so the
+seed-42 query/gallery split - and therefore the query set - is identical
+across models. That is what makes the model comparison fair.
 """
 
 from pathlib import Path
@@ -19,28 +24,38 @@ def _coco_image_dir():
     return nested if nested.exists() else REPO_ROOT / "data" / "circo"
 
 
+MODELS = {
+    # FAISS IVF-PQ needs dimension % pq_m == 0: 768 / 48 and 512 / 32.
+    "vit": {"label": "ViT-B/16", "dimension": 768, "pq_m": 48},
+    "resnet": {"label": "ResNet18", "dimension": 512, "pq_m": 32},
+}
+
 DATASETS = {
     "coco": {
-        "label": "ViT-COCO",
-        "model": "ViT-B/16",
-        "dimension": 768,
-        "emb": REPO_ROOT / "data" / "circo" / "vit_embeddings.npy",
-        "ids": REPO_ROOT / "data" / "circo" / "vit_image_ids.npy",
+        "label": "COCO",
+        "data_dir": REPO_ROOT / "data" / "circo",
         "image_dir": _coco_image_dir(),
-        # 768 % 48 == 0 -> 48 bytes per vector.
-        "pq_m": 48,
     },
     "zappos": {
-        "label": "ResNet18-Zappos",
-        "model": "ResNet18",
-        "dimension": 512,
-        "emb": REPO_ROOT / "data" / "zappos" / "resnet_embeddings.npy",
-        "ids": REPO_ROOT / "data" / "zappos" / "resnet_image_ids.npy",
+        "label": "Zappos",
+        "data_dir": REPO_ROOT / "data" / "zappos",
         "image_dir": REPO_ROOT / "data" / "zappos" / "ut-zap50k-images" / "ut-zap50k-images",
-        # FAISS requires d % m == 0 and 512 % 48 != 0, so 32 bytes per vector.
-        "pq_m": 32,
     },
 }
+
+CONFIGS = {}
+for _model, _m in MODELS.items():
+    for _dataset, _d in DATASETS.items():
+        CONFIGS[f"{_model}-{_dataset}"] = {
+            "model": _model,
+            "dataset": _dataset,
+            "label": f"{_m['label']} / {_d['label']}",
+            "emb": _d["data_dir"] / f"{_model}_embeddings.npy",
+            "ids": _d["data_dir"] / f"{_model}_image_ids.npy",
+            "image_dir": _d["image_dir"],
+            "dimension": _m["dimension"],
+            "pq_m": _m["pq_m"],
+        }
 
 
 def results_dir(key):

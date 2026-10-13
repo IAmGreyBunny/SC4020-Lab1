@@ -1,36 +1,47 @@
 # ann-comparison
 
-One folder for the whole ANN pipeline on both team datasets, so the
-algorithms can be compared side by side:
+One folder for the whole ANN pipeline, run on the full **2x2 grid of
+embedding model x dataset**, so the search algorithms can be compared
+side by side and the model's effect separated from the dataset's:
 
-| Key | Dataset | Embedding model | Dim | Vectors | Gallery |
+| Config | Model | Dataset | Dim | Vectors | Gallery |
 |---|---|---|---:|---:|---:|
-| `coco` | COCO unlabeled2017 | ViT-B/16 | 768 | 123,403 | 122,403 |
-| `zappos` | UT-Zap50K | ResNet18 | 512 | 50,025 | 49,025 |
+| `vit-coco` | ViT-B/16 | COCO unlabeled2017 | 768 | 123,403 | 122,403 |
+| `resnet-coco` | ResNet18 | COCO unlabeled2017 | 512 | 123,403 | 122,403 |
+| `vit-zappos` | ViT-B/16 | UT-Zap50K | 768 | 50,025 | 49,025 |
+| `resnet-zappos` | ResNet18 | UT-Zap50K | 512 | 50,025 | 49,025 |
 
 Methods: Exact FlatIP (ground truth) vs HNSW vs IVF-PQ vs LSH, with
 Recall@K, Precision@K and mAP@K (K = 5/10/20), latency, QPS, build time
 and index size.
 
+**Why the 2x2 grid:** the original experiments paired each dataset with
+one model (ViT on COCO, ResNet18 on Zappos), so a difference between them
+could come from either. Here both models are run on both datasets. Both
+models on a dataset have the same rows in the same order, so the seed-42
+split gives them the **identical 1,000 queries**; any difference between
+the two is due to the model alone.
+
 This folder merges `experiments/vit-coco-faiss/` and
-`experiments/resnet18-zappos/`. Those folders are left unchanged; the
-pipeline scripts here are copies with only their output paths repointed.
-The robustness experiment (`experiments/robustness-comparison/`) is
-separate and not included.
+`experiments/resnet18-zappos/`, which are left unchanged. The robustness
+experiment (`experiments/robustness-comparison/`) is separate and not
+included.
 
 ## Pipeline
 
 ```text
-COCO unlabeled2017 JPGs              UT-Zap50K JPGs
-  -> ViT-B/16 (head removed)           -> ResNet18 (fc removed)
-  -> 768-d L2-normalized               -> 512-d L2-normalized
-  -> data/circo/vit_*.npy              -> data/zappos/resnet_*.npy
-        \                                  /
-         benchmark_ann.py --dataset all          (same protocol, one script)
-                         |
-         results/<dataset>/ann_results.*  +  results/combined_ann_results.csv
-                         |
-         compare_methods.ipynb                    (both datasets in one notebook)
+COCO JPGs (data/circo/)          UT-Zap50K JPGs (data/zappos/ut-zap50k-images/...)
+            \                         /
+   pipeline/extract_embeddings.py --model {vit,resnet} --dataset {coco,zappos}
+            |  ViT-B/16 (768-d) or ResNet18 (512-d), L2-normalized
+            v
+   data/circo/{vit,resnet}_*.npy     data/zappos/{vit,resnet}_*.npy
+            \                         /
+   benchmark_ann.py --config all          (same protocol for all four)
+            |
+   results/<config>/ann_results.*  +  results/combined_ann_results.csv
+            |
+   compare_methods.ipynb                  (all four in one notebook)
 ```
 
 ## Files
@@ -39,26 +50,29 @@ COCO unlabeled2017 JPGs              UT-Zap50K JPGs
 experiments/ann-comparison/
 ├── README.md
 ├── requirements.txt
-├── datasets.py               # dataset registry: paths, model, dim, pq-m
-├── benchmark_ann.py          # ONE benchmark for every dataset
-├── compare_methods.ipynb     # ONE notebook comparing every dataset
+├── datasets.py               # registry of the four configs: paths, dim, pq-m
+├── benchmark_ann.py          # ONE benchmark for every config
+├── compare_methods.ipynb     # ONE notebook comparing every config
 ├── pipeline/
-│   ├── coco/                 # from vit-coco-faiss
+│   ├── extract_embeddings.py # ONE extractor: --model x --dataset (resumable)
+│   ├── coco/                 # original ViT/COCO scripts (from vit-coco-faiss)
 │   │   ├── unzip_coco.py           # extract unlabeled2017.zip
-│   │   ├── extract_embeddings.py   # ViT-B/16 embeddings (resumable)
+│   │   ├── extract_embeddings.py   # original ViT-only extractor
 │   │   ├── validate_embeddings.py  # shape/dtype/norm/id checks
 │   │   └── exact_search.py         # standalone exact-search baseline
-│   └── zappos/               # from resnet18-zappos
-│       ├── common.py               # path discovery + deterministic ordering
-│       ├── extract_features.py     # ResNet18 embeddings
-│       ├── search.py               # single-query retrieval check
-│       └── evaluate.py             # label-based evaluation
-└── results/
-    ├── combined_ann_results.csv    # every row, with a `dataset` column
-    ├── coco/                       # ann_results.json/.csv, visual-comparisons/
-    └── zappos/                     # ann_results.json/.csv, visual-comparisons/
+│   └── zappos/               # original ResNet/Zappos scripts (from resnet18-zappos)
+│       ├── common.py, extract_features.py, search.py, evaluate.py
+└── results/                  # generated by benchmark_ann.py
+    ├── combined_ann_results.csv    # every row, with config/model/dataset columns
+    └── <config>/                   # ann_results.json/.csv, visual-comparisons/
         (per_query/ is generated locally and not committed)
 ```
+
+`pipeline/extract_embeddings.py` replaces the two per-dataset extractors
+for this experiment; it reproduces both exactly (same weights,
+preprocessing and image ordering - verified to cosine 1.0 against the
+original ViT/COCO notebook output and the teammate's ResNet/Zappos
+handoff file).
 
 ## Setup
 
@@ -68,99 +82,103 @@ From the repository root:
 python -m pip install -r experiments/ann-comparison/requirements.txt
 ```
 
-For NVIDIA GPU embedding extraction, install the CUDA build of PyTorch
-for your machine instead of the default wheel.
+For GPU extraction install the CUDA build of PyTorch for your machine
+instead of the default wheel.
 
-## Step 1 - Obtain the embeddings
+## Step 1 - Place the images
 
-The benchmark only needs the two `.npy` files per dataset. All `.npy`
-files under `data/` are ignored by Git and are shared separately.
+Both are git-ignored (`data/**/*.jpg`).
 
-### COCO (ViT) -> `data/circo/`
-
-**Option A - download** `vit_embeddings.npy`, `vit_image_ids.npy` and
-`vit_metadata.json` (~363 MB) from the team's shared Drive folder (link in
-`experiments/vit-coco-faiss/README.md`) into `data/circo/`.
-
-**Option B - generate** (about 24 min on a GPU):
+**COCO** - all 123,403 `unlabeled2017` JPGs directly in `data/circo/`
+(or in `data/circo/unlabeled2017/`). From the 19 GB zip:
 
 ```bash
 python experiments/ann-comparison/pipeline/coco/unzip_coco.py \
   --zip /path/to/unlabeled2017.zip --dest data/circo --workers 6
-
-python experiments/ann-comparison/pipeline/coco/extract_embeddings.py \
-  --images-dir data/circo --output-dir data/circo --prefix vit --batch-size 8
 ```
 
-Then validate:
+**Zappos** - UT-Zap50K from Kaggle
+(`aryashah2k/large-shoe-dataset-ut-zappos50k`, 853 MB). Use the
+**non-square** `ut-zap50k-images` folder and place it so the four category
+folders sit here:
+
+```text
+data/zappos/ut-zap50k-images/ut-zap50k-images/{Boots,Sandals,Shoes,Slippers}/...
+```
+
+Check (should print 50025):
 
 ```bash
-python experiments/ann-comparison/pipeline/coco/validate_embeddings.py \
-  --emb data/circo/vit_embeddings.npy --ids data/circo/vit_image_ids.npy \
-  --meta data/circo/vit_metadata.json --expect-count 123403 --images-dir data/circo
+python -c "from pathlib import Path; print(sum(1 for _ in Path('data/zappos/ut-zap50k-images/ut-zap50k-images').rglob('*.jpg')))"
 ```
 
-### Zappos (ResNet18) -> `data/zappos/`
+## Step 2 - Extract the embeddings (GPU recommended)
 
-**Option A - use the handoff files** `resnet_embeddings.npy` and
-`resnet_image_ids.npy` (~98 MB) placed into `data/zappos/`.
-
-**Option B - generate**:
+One command per configuration, from the repository root. Each run is
+resumable - re-running the same command continues where it stopped.
+Times are rough for an RTX 4060 laptop GPU:
 
 ```bash
-python experiments/ann-comparison/pipeline/zappos/extract_features.py \
-  --images-dir data/zappos/ut-zap50k-images/ut-zap50k-images \
-  --output-dir data/zappos --prefix resnet
+python experiments/ann-comparison/pipeline/extract_embeddings.py --model resnet --dataset zappos  # ~3 min
+python experiments/ann-comparison/pipeline/extract_embeddings.py --model vit    --dataset zappos  # ~10 min
+python experiments/ann-comparison/pipeline/extract_embeddings.py --model resnet --dataset coco    # ~10 min
+python experiments/ann-comparison/pipeline/extract_embeddings.py --model vit    --dataset coco    # ~25 min
 ```
 
-`common.py` still defaults to the original author's local dataset path, so
-pass `--images-dir` explicitly.
+Outputs (`.npy` is git-ignored): `data/<circo|zappos>/<model>_embeddings.npy`
+(float32, L2-normalized), `<model>_image_ids.npy` (int64) and
+`<model>_metadata.json`. Each run reloads its output and checks shape,
+dtype, finiteness and unit norms before printing `DONE`.
 
-## Step 2 - Obtain the images (notebook grids only)
+Notes:
 
-The benchmark itself needs only the embeddings. The notebook's
-same-query image grids also need:
+- `--model resnet --dataset zappos` overwrites the teammate's handoff
+  `data/zappos/resnet_embeddings.npy` with an identical regeneration. To
+  keep the original, copy it elsewhere first.
+- Optional extra validation for COCO:
 
-- COCO: the JPGs in `data/circo/` (or `data/circo/unlabeled2017/`)
-- Zappos: `data/zappos/ut-zap50k-images/ut-zap50k-images/` - download
-  from Kaggle (`aryashah2k/large-shoe-dataset-ut-zappos50k`) as described
-  in `experiments/resnet18-zappos/README.md`
+  ```bash
+  python experiments/ann-comparison/pipeline/coco/validate_embeddings.py \
+    --emb data/circo/vit_embeddings.npy --ids data/circo/vit_image_ids.npy \
+    --meta data/circo/vit_metadata.json --expect-count 123403 --images-dir data/circo
+  # for ResNet: resnet_* files and --expect-dim 512
+  ```
+
+- Quick smoke test without touching `data/`: add `--limit 64 --output-dir /tmp/smoke`.
 
 ## Step 3 - Run the benchmark
 
 ```bash
-# both datasets (a dataset whose embeddings are missing is skipped)
-python experiments/ann-comparison/benchmark_ann.py
+# all four configs (any whose embeddings are missing is skipped)
+python experiments/ann-comparison/benchmark_ann.py            # ~20-30 min total
 
 # or one at a time
-python experiments/ann-comparison/benchmark_ann.py --dataset coco
-python experiments/ann-comparison/benchmark_ann.py --dataset zappos
+python experiments/ann-comparison/benchmark_ann.py --config resnet-zappos
 ```
 
 Every run rebuilds `results/combined_ann_results.csv` from all available
-`results/*/ann_results.json`, so running one dataset still refreshes the
-combined table.
+`results/*/ann_results.json`.
 
-The protocol is identical for both datasets: 1,000 held-out queries
-(seed 42), exact top-20 ground truth, single-threaded search, all-core
-builds, the same HNSW / IVF / LSH sweeps. The only differences are forced
-by the data and live in `datasets.py`:
+The protocol is identical for every configuration: 1,000 held-out
+queries (seed 42), exact top-20 ground truth, single-threaded search,
+all-core builds, the same HNSW / IVF / LSH sweeps. The only differences
+are forced by the data and live in `datasets.py`:
 
-- `pq-m` 48 for COCO (768-d) and 32 for Zappos (512-d), because FAISS
+- `pq-m` 48 for ViT (768-d) and 32 for ResNet18 (512-d), because FAISS
   needs `dimension % pq_m == 0`.
-- IVF-PQ trains on a 50k gallery sample for COCO, and on the full gallery
+- IVF-PQ trains on a 50k gallery sample for COCO and on the full gallery
   (49,025 rows) for Zappos.
 
 Searches are timed single-threaded. The script also pins the BLAS thread
 pool (`OPENBLAS_NUM_THREADS` / `MKL_NUM_THREADS` = 1), because exact
-search runs through BLAS, which ignores FAISS's own thread setting. Without
-the pin, exact search silently used every core on Windows and looked
-faster than HNSW.
+search runs through BLAS, which ignores FAISS's own thread setting.
+Without the pin, exact search silently used every core on Windows and
+looked faster than HNSW.
 
 ### Metrics
 
-All accuracy metrics treat the **exact top-K** as the relevant set for
-each query, at K = 5, 10 and 20:
+All accuracy metrics treat the **exact top-K of the same configuration**
+as the relevant set for each query, at K = 5, 10 and 20:
 
 - **Recall@K**: the fraction of the exact top-K that the method also
   returns.
@@ -175,7 +193,7 @@ each query, at K = 5, 10 and 20:
 Exact search scores 1.0 on all three by definition. Padding (`-1`, no
 result returned) never counts as relevant.
 
-Outputs per dataset in `results/<dataset>/`:
+Outputs per configuration in `results/<config>/`:
 
 | File | Contents |
 |---|---|
@@ -183,7 +201,7 @@ Outputs per dataset in `results/<dataset>/`:
 | `per_query/exact_top20.npy` | exact top-20 gallery rows per query (ground truth) |
 | `per_query/<setting>_top20.npy` | top-20 per ANN setting (`hnsw_ef*`, `ivfpq_np*`, `lsh_nb*`) |
 | `per_query/query_rows.npy`, `gallery_rows.npy` | the fixed split |
-| `visual-comparisons/` | same-query grids across methods (from the notebook) |
+| `visual-comparisons/` | same-query grids (from the notebook) |
 
 ## Step 4 - Compare in the notebook
 
@@ -194,73 +212,47 @@ jupyter lab   # open compare_methods.ipynb, run all cells
 
 Sections:
 
-1. one combined metrics table for both datasets,
-2. overlaid recall-vs-latency / recall-vs-size plots and parameter sweeps,
-3. cross-dataset summary with speed-up and compression vs exact,
-4. the same query searched by every method side by side, per dataset,
-5. Zappos category-level precision per method,
-6. sanity checks.
+1. one combined metrics table for all four configurations,
+2. overlaid trade-off plots (colour = method, marker = dataset,
+   filled = ViT / hollow = ResNet) and parameter sweeps,
+3. cross-configuration summary with speed-up and compression vs exact,
+4. **model vs dataset effects**: each method across the 2x2 grid, with
+   "model effect" (ViT - ResNet) and "dataset effect" (COCO - Zappos)
+   columns, plus how much the two models' exact neighbours overlap,
+5. the same query searched by both models' exact search and every ANN
+   method (`SAME`/`DIFF` marks where the models disagree),
+6. Zappos category / subcategory precision@10 for both models,
+7. sanity checks (incl. that both models used identical queries).
 
-Sections 1-3 work from the committed `ann_results.json` files alone.
-Sections 4-6 need a local benchmark run (for `per_query/`), the
-embeddings and the images; anything missing is skipped with a note.
+Sections 1-4 work from `ann_results.json` alone. Sections 5-7 need the
+local `per_query/` files, the embeddings and the images; anything missing
+is skipped with a note.
 
-## Results (1,000 queries, 1 search thread)
+## Results
 
-| Method | Setting | COCO R@10 | COCO mAP@10 | COCO ms/q | COCO MB | Zappos R@10 (= P@10) | Zappos mAP@10 | Zappos ms/q | Zappos MB |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Exact FlatIP | - | 1.000 | 1.000 | 2.158 | 358.6 | 1.000 | 1.000 | 0.419 | 95.8 |
-| HNSW | efSearch=16 | 0.916 | pending | 0.149 | 390.4 | 0.930 | 0.930 | 0.091 | 108.5 |
-| HNSW | efSearch=64 | 0.986 | pending | 0.379 | 390.4 | 0.994 | 0.994 | 0.219 | 108.5 |
-| HNSW | efSearch=128 | 0.995 | pending | 0.704 | 390.4 | 0.999 | 0.999 | 0.380 | 108.5 |
-| HNSW | efSearch=256 | 0.997 | pending | 1.087 | 390.4 | 1.000 | 1.000 | 0.740 | 108.5 |
-| IVF-PQ | nprobe=4 | 0.460 | pending | 0.189 | 8.0 | 0.358 | 0.258 | 0.058 | 2.9 |
-| IVF-PQ | nprobe=32 | 0.465 | pending | 0.536 | 8.0 | 0.373 | 0.270 | 0.212 | 2.9 |
-| LSH | nbits=256 | 0.324 | pending | 0.215 | 4.5 | 0.229 | 0.147 | 0.080 | 2.0 |
-| LSH | nbits=512 | 0.473 | pending | 0.391 | 9.0 | 0.389 | 0.296 | 0.144 | 4.0 |
+Not committed yet - run steps 2-4 to populate `results/`. The previous
+single-model numbers (ViT/COCO from the original WSL machine, ResNet/
+Zappos re-run here) are in this branch's git history.
 
-Full tables: `results/combined_ann_results.csv`.
+When reading the results:
 
-**Provenance.** The two datasets were measured on different machines, so
-compare their speed-ups (in the notebook), not their raw milliseconds:
-
-- **COCO:** from the original run on WSL2 with a 12-core CPU, made before
-  Precision@K and mAP@K existed. COCO P@10 equals its R@10 by definition.
-  COCO mAP is pending until someone re-runs
-  `benchmark_ann.py --dataset coco` with the ViT embeddings in place.
-- **Zappos:** re-run on Windows with a 16-core CPU and BLAS pinned to one
-  thread.
-
-Key observations:
-
-- **The method ordering is the same on both datasets.** HNSW dominates the
-  speed-accuracy trade-off, and IVF-PQ and LSH trade recall for memory.
-- **HNSW:** efSearch=64 reaches ~0.99 Recall@10 at 1.9x (Zappos) to 5.7x
-  (COCO) the speed of exact search. Its advantage grows with gallery size.
-  On the smaller Zappos gallery, efSearch=256 is already slower than a flat
-  scan.
-- **mAP separates the methods by ranking quality.**
-  - HNSW's mAP@10 equals its recall. It scores candidates with exact
-    distances, so the neighbours it finds come back in the correct order.
-    Any miss is replaced by a less similar item that sorts to the bottom.
-  - IVF-PQ and LSH rank by approximate distances (PQ codes, Hamming
-    codes), so even the neighbours they do find are often misordered. On
-    Zappos, IVF-PQ drops from 0.373 recall to 0.270 mAP@10, and LSH-512
-    from 0.389 to 0.296.
-- **IVF-PQ:** recall saturates around nprobe=4 (0.465 COCO, 0.373 Zappos)
-  because PQ compression distortion is the limit, not missed clusters. In
-  return it gives the smallest indexes, 33-45x smaller than exact.
-- **Zappos categories:** category precision@10 degrades much more gently
-  than vector recall. Exact reaches 0.901 and LSH 0.87, so coarse category
-  structure survives approximate search.
+- Compare **speed-ups**, not raw milliseconds, across configurations:
+  latency depends on gallery size (COCO is 2.5x larger) and vector
+  dimension (768 vs 512).
+- ResNet18 cosine scores are much higher than ViT's (often 0.6-0.8 vs
+  0.1-0.4) because its features are post-ReLU and therefore non-negative.
+  Only the ranking matters for every metric here, so this does not bias
+  the comparison.
+- Expected from the earlier single-model runs: HNSW dominates the
+  speed-accuracy trade-off and its mAP equals its recall (it ranks with
+  exact distances); IVF-PQ and LSH lose more on mAP than on recall
+  because they rank with approximate distances.
 
 ## Notes
 
 - Vectors are L2-normalized, so `IndexFlatIP` computes cosine similarity
   directly; `IndexLSH` ranks by L2, which equals cosine ranking on
   normalized vectors.
-- Raw latencies are not comparable across datasets (different gallery size,
-  dimension and model). Use the notebook's speed-up column instead.
 - Dataset links are conveniences for this working repository only. The
   final project submission ZIP must contain no datasets, models or
   cloud-hosted links (course requirement).
