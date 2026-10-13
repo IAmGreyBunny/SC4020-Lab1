@@ -15,6 +15,10 @@ vectors. All vectors are L2-normalized, so inner product equals cosine
 similarity; on normalized vectors L2 ranking equals cosine ranking, so LSH
 (L2 by default in FAISS) is comparable to the IP-based methods.
 
+Accuracy metrics, all at K = 5/10/20 with the exact top-K as the relevant
+set: Recall@K, Precision@K (equal to Recall@K, since both lists hold K
+items) and mAP@K (rank-aware: misordered neighbours score lower).
+
 Dataset paths and data-forced settings (--pq-m) come from datasets.py:
 - coco   : ViT-B/16, 768-d, pq-m 48
 - zappos : ResNet18, 512-d, pq-m 32 (512 % 48 != 0)
@@ -33,19 +37,29 @@ available results/*/ann_results.json, with a leading `dataset` column.
 import argparse
 import csv
 import json
+import os
 import time
 from pathlib import Path
+
+# Exact search runs through BLAS, whose thread pool (OpenBLAS on the
+# Windows faiss-cpu wheel) ignores faiss.omp_set_num_threads. Without this
+# "single-threaded" exact search silently used every core, making it look
+# faster than HNSW. Must be set before faiss/numpy load BLAS.
+for _var in ("OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ.setdefault(_var, "1")
 
 import faiss
 import numpy as np
 
 from datasets import DATASETS, RESULTS_DIR, results_dir
 
-RECALL_KS = (5, 10, 20)
+METRIC_KS = (5, 10, 20)
 CSV_FIELDS = [
     "algorithm", "parameters", "build_seconds", "search_seconds",
     "latency_ms_per_query", "queries_per_second",
-    *[f"recall_at_{k}" for k in RECALL_KS],
+    *[f"recall_at_{k}" for k in METRIC_KS],
+    *[f"precision_at_{k}" for k in METRIC_KS],
+    *[f"map_at_{k}" for k in METRIC_KS],
     "index_size_mb",
 ]
 
@@ -73,6 +87,35 @@ def recall_at_k(ground_truth, actual, k):
     return float(np.mean(recalls))
 
 
+def precision_at_k(ground_truth, actual, k):
+    # Fraction of the method's top-k that is in the exact top-k. Both
+    # lists hold k items, so this equals recall_at_k; kept as its own
+    # metric for reporting.
+    precisions = []
+    for gt_row, actual_row in zip(ground_truth, actual):
+        gt_set = set(gt_row[:k].tolist())
+        hits = sum(1 for row in actual_row[:k].tolist() if row in gt_set)
+        precisions.append(hits / k)
+    return float(np.mean(precisions))
+
+
+def map_at_k(ground_truth, actual, k):
+    # Mean average precision against the exact top-k: precision is taken
+    # at every rank holding a relevant result, so true neighbours ranked
+    # lower score less. Normalized by k (the number of relevant items).
+    average_precisions = []
+    for gt_row, actual_row in zip(ground_truth, actual):
+        gt_set = set(gt_row[:k].tolist())
+        hits = 0
+        precision_sum = 0.0
+        for rank, row in enumerate(actual_row[:k].tolist(), start=1):
+            if row in gt_set:
+                hits += 1
+                precision_sum += hits / rank
+        average_precisions.append(precision_sum / k)
+    return float(np.mean(average_precisions))
+
+
 def result_row(algorithm, parameters, build_seconds, search_seconds,
                num_queries, index, ground_truth, indices):
     row = {
@@ -84,8 +127,12 @@ def result_row(algorithm, parameters, build_seconds, search_seconds,
         "queries_per_second": num_queries / search_seconds,
         "index_size_mb": len(faiss.serialize_index(index)) / (1024 * 1024),
     }
-    for k in RECALL_KS:
+    for k in METRIC_KS:
         row[f"recall_at_{k}"] = recall_at_k(ground_truth, indices, k)
+    for k in METRIC_KS:
+        row[f"precision_at_{k}"] = precision_at_k(ground_truth, indices, k)
+    for k in METRIC_KS:
+        row[f"map_at_{k}"] = map_at_k(ground_truth, indices, k)
     return row
 
 
@@ -94,7 +141,8 @@ def write_csv(path, rows, fields):
         writer = csv.DictWriter(file, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for row in rows:
-            csv_row = {field: row[field] for field in fields}
+            # Results from older runs may lack newer metrics: leave blank.
+            csv_row = {field: row.get(field, "") for field in fields}
             csv_row["parameters"] = json.dumps(csv_row["parameters"], sort_keys=True)
             writer.writerow(csv_row)
 
@@ -279,7 +327,8 @@ def run_benchmark(key, cfg, args):
         "dimension": dimension,
         "seed": args.seed,
         "k_gt": args.k_gt,
-        "recall_ks": list(RECALL_KS),
+        "recall_ks": list(METRIC_KS),
+        "metric_ks": list(METRIC_KS),
         "embedding_file": str(emb_path),
         "search_threads": args.threads,
         "build_threads": build_threads,

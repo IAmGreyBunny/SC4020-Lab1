@@ -9,7 +9,8 @@ algorithms can be compared side by side:
 | `zappos` | UT-Zap50K | ResNet18 | 512 | 50,025 | 49,025 |
 
 Methods: Exact FlatIP (ground truth) vs HNSW vs IVF-PQ vs LSH, with
-Recall@5/10/20, latency, QPS, build time and index size.
+Recall@K, Precision@K and mAP@K (K = 5/10/20), latency, QPS, build time
+and index size.
 
 This folder merges `experiments/vit-coco-faiss/` and
 `experiments/resnet18-zappos/`. Those folders are left unchanged; the
@@ -150,11 +151,35 @@ by the data and live in `datasets.py`:
 - IVF-PQ trains on a 50k gallery sample for COCO, and on the full gallery
   (49,025 rows) for Zappos.
 
+Searches are timed single-threaded. The script also pins the BLAS thread
+pool (`OPENBLAS_NUM_THREADS` / `MKL_NUM_THREADS` = 1), because exact
+search runs through BLAS, which ignores FAISS's own thread setting. Without
+the pin, exact search silently used every core on Windows and looked
+faster than HNSW.
+
+### Metrics
+
+All accuracy metrics treat the **exact top-K** as the relevant set for
+each query, at K = 5, 10 and 20:
+
+- **Recall@K**: the fraction of the exact top-K that the method also
+  returns.
+- **Precision@K**: the fraction of the method's top-K that is in the
+  exact top-K. Both lists hold K items, so it is numerically equal to
+  Recall@K here. It is reported separately for completeness.
+- **mAP@K**: the mean over queries of
+  AP@K = (1/K) · Σ<sub>i≤K</sub> Precision@i · rel(i).
+  It is rank-aware: true neighbours returned lower down the list score
+  less.
+
+Exact search scores 1.0 on all three by definition. Padding (`-1`, no
+result returned) never counts as relevant.
+
 Outputs per dataset in `results/<dataset>/`:
 
 | File | Contents |
 |---|---|
-| `ann_results.json` / `.csv` | per method/setting: Recall@5/10/20, latency, QPS, build time, index size |
+| `ann_results.json` / `.csv` | per method/setting: Recall/Precision/mAP @5/10/20, latency, QPS, build time, index size |
 | `per_query/exact_top20.npy` | exact top-20 gallery rows per query (ground truth) |
 | `per_query/<setting>_top20.npy` | top-20 per ANN setting (`hnsw_ef*`, `ivfpq_np*`, `lsh_nb*`) |
 | `per_query/query_rows.npy`, `gallery_rows.npy` | the fixed split |
@@ -182,28 +207,46 @@ embeddings and the images; anything missing is skipped with a note.
 
 ## Results (1,000 queries, 1 search thread)
 
-| Method | Setting | COCO R@10 | COCO ms/q | COCO MB | Zappos R@10 | Zappos ms/q | Zappos MB |
-|---|---|---:|---:|---:|---:|---:|---:|
-| Exact FlatIP | - | 1.000 | 2.158 | 358.6 | 1.000 | 0.623 | 95.8 |
-| HNSW | efSearch=16 | 0.916 | 0.149 | 390.4 | 0.929 | 0.109 | 108.5 |
-| HNSW | efSearch=64 | 0.986 | 0.379 | 390.4 | 0.993 | 0.261 | 108.5 |
-| HNSW | efSearch=128 | 0.995 | 0.704 | 390.4 | 0.998 | 0.451 | 108.5 |
-| HNSW | efSearch=256 | 0.997 | 1.087 | 390.4 | 1.000 | 0.795 | 108.5 |
-| IVF-PQ | nprobe=4 | 0.460 | 0.189 | 8.0 | 0.358 | 0.077 | 2.9 |
-| IVF-PQ | nprobe=32 | 0.465 | 0.536 | 8.0 | 0.373 | 0.233 | 2.9 |
-| LSH | nbits=256 | 0.324 | 0.215 | 4.5 | 0.229 | 0.097 | 2.0 |
-| LSH | nbits=512 | 0.473 | 0.391 | 9.0 | 0.389 | 0.174 | 4.0 |
+| Method | Setting | COCO R@10 | COCO mAP@10 | COCO ms/q | COCO MB | Zappos R@10 (= P@10) | Zappos mAP@10 | Zappos ms/q | Zappos MB |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Exact FlatIP | - | 1.000 | 1.000 | 2.158 | 358.6 | 1.000 | 1.000 | 0.419 | 95.8 |
+| HNSW | efSearch=16 | 0.916 | pending | 0.149 | 390.4 | 0.930 | 0.930 | 0.091 | 108.5 |
+| HNSW | efSearch=64 | 0.986 | pending | 0.379 | 390.4 | 0.994 | 0.994 | 0.219 | 108.5 |
+| HNSW | efSearch=128 | 0.995 | pending | 0.704 | 390.4 | 0.999 | 0.999 | 0.380 | 108.5 |
+| HNSW | efSearch=256 | 0.997 | pending | 1.087 | 390.4 | 1.000 | 1.000 | 0.740 | 108.5 |
+| IVF-PQ | nprobe=4 | 0.460 | pending | 0.189 | 8.0 | 0.358 | 0.258 | 0.058 | 2.9 |
+| IVF-PQ | nprobe=32 | 0.465 | pending | 0.536 | 8.0 | 0.373 | 0.270 | 0.212 | 2.9 |
+| LSH | nbits=256 | 0.324 | pending | 0.215 | 4.5 | 0.229 | 0.147 | 0.080 | 2.0 |
+| LSH | nbits=512 | 0.473 | pending | 0.391 | 9.0 | 0.389 | 0.296 | 0.144 | 4.0 |
 
 Full tables: `results/combined_ann_results.csv`.
+
+**Provenance.** The two datasets were measured on different machines, so
+compare their speed-ups (in the notebook), not their raw milliseconds:
+
+- **COCO:** from the original run on WSL2 with a 12-core CPU, made before
+  Precision@K and mAP@K existed. COCO P@10 equals its R@10 by definition.
+  COCO mAP is pending until someone re-runs
+  `benchmark_ann.py --dataset coco` with the ViT embeddings in place.
+- **Zappos:** re-run on Windows with a 16-core CPU and BLAS pinned to one
+  thread.
 
 Key observations:
 
 - **The method ordering is the same on both datasets.** HNSW dominates the
   speed-accuracy trade-off, and IVF-PQ and LSH trade recall for memory.
-- **HNSW:** efSearch=64 reaches ~0.99 Recall@10 at 2.4x (Zappos) to 5.7x
+- **HNSW:** efSearch=64 reaches ~0.99 Recall@10 at 1.9x (Zappos) to 5.7x
   (COCO) the speed of exact search. Its advantage grows with gallery size.
   On the smaller Zappos gallery, efSearch=256 is already slower than a flat
   scan.
+- **mAP separates the methods by ranking quality.**
+  - HNSW's mAP@10 equals its recall. It scores candidates with exact
+    distances, so the neighbours it finds come back in the correct order.
+    Any miss is replaced by a less similar item that sorts to the bottom.
+  - IVF-PQ and LSH rank by approximate distances (PQ codes, Hamming
+    codes), so even the neighbours they do find are often misordered. On
+    Zappos, IVF-PQ drops from 0.373 recall to 0.270 mAP@10, and LSH-512
+    from 0.389 to 0.296.
 - **IVF-PQ:** recall saturates around nprobe=4 (0.465 COCO, 0.373 Zappos)
   because PQ compression distortion is the limit, not missed clusters. In
   return it gives the smallest indexes, 33-45x smaller than exact.
