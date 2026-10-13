@@ -140,6 +140,12 @@ def result_row(algorithm, parameters, build_seconds, search_seconds,
     return row
 
 
+def format_metrics(row):
+    # One-line progress summary: recall at every K plus per-query latency.
+    recalls = " ".join(f"recall@{k}={row[f'recall_at_{k}']:.3f}" for k in METRIC_KS)
+    return f"{recalls} | {row['latency_ms_per_query']:.3f} ms/q"
+
+
 def write_csv(path, rows, fields):
     with path.open("w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=fields, lineterminator="\n")
@@ -250,8 +256,7 @@ def run_benchmark(key, cfg, args):
                 hnsw, ground_truth, indices,
             )
         )
-        print(f"hnsw efSearch={ef_search}: "
-              f"recall@10={results[-1]['recall_at_10']:.3f}", flush=True)
+        print(f"hnsw efSearch={ef_search}: {format_metrics(results[-1])}", flush=True)
     del hnsw
 
     # ---------------- IVF-PQ ----------------
@@ -289,8 +294,7 @@ def run_benchmark(key, cfg, args):
                 ivfpq, ground_truth, indices,
             )
         )
-        print(f"ivfpq nprobe={nprobe}: "
-              f"recall@10={results[-1]['recall_at_10']:.3f}", flush=True)
+        print(f"ivfpq nprobe={nprobe}: {format_metrics(results[-1])}", flush=True)
     del ivfpq
 
     # ---------------- LSH ----------------
@@ -316,8 +320,7 @@ def run_benchmark(key, cfg, args):
                 lsh, ground_truth, indices,
             )
         )
-        print(f"lsh nbits={nbits}: "
-              f"recall@10={results[-1]['recall_at_10']:.3f}", flush=True)
+        print(f"lsh nbits={nbits}: {format_metrics(results[-1])}", flush=True)
         del lsh
 
     # ---------------- Save aggregate results ----------------
