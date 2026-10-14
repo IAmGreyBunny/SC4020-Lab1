@@ -1,0 +1,12 @@
+{
+  "model": "resnet",
+  "weights": "ResNet18_Weights.DEFAULT",
+  "dataset": "coco",
+  "dimension": 512,
+  "count": 123403,
+  "normalized": true,
+  "order": "sorted by filename",
+  "source_path": "C:\\Users\\iamgr\\Desktop\\SC4020-Lab1\\data\\circo",
+  "batch_size": 128,
+  "rows_done": 123403
+}

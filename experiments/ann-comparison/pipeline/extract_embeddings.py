@@ -148,8 +148,17 @@ def main():
         return
 
     mode = "r+" if start_row > 0 else "w+"
-    embeddings = np.lib.format.open_memmap(emb_path, mode=mode, dtype="float32", shape=(total, dimension))
-    id_array = np.lib.format.open_memmap(ids_path, mode=mode, dtype="int64", shape=(total,))
+    try:
+        embeddings = np.lib.format.open_memmap(emb_path, mode=mode, dtype="float32", shape=(total, dimension))
+        id_array = np.lib.format.open_memmap(ids_path, mode=mode, dtype="int64", shape=(total,))
+    except OSError as error:
+        # Windows refuses to rewrite a file that another process has
+        # memory-mapped, e.g. a Jupyter kernel that ran np.load(..., mmap_mode="r").
+        raise SystemExit(
+            f"cannot write {emb_path.name} ({error}).\n"
+            "Another process probably has the old file open - usually a running "
+            "Jupyter kernel that loaded it. Shut that kernel down and re-run."
+        )
     id_array[:] = ids
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -1,0 +1,12 @@
+{
+  "model": "resnet",
+  "weights": "ResNet18_Weights.DEFAULT",
+  "dataset": "zappos",
+  "dimension": 512,
+  "count": 50025,
+  "normalized": true,
+  "order": "sorted by full path",
+  "source_path": "C:\\Users\\iamgr\\Desktop\\SC4020-Lab1\\data\\zappos\\ut-zap50k-images\\ut-zap50k-images",
+  "batch_size": 128,
+  "rows_done": 50025
+}

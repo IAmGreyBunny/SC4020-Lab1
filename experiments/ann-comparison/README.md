@@ -11,9 +11,11 @@ side by side and the model's effect separated from the dataset's:
 | `vit-zappos` | ViT-B/16 | UT-Zap50K | 768 | 50,025 | 49,025 |
 | `resnet-zappos` | ResNet18 | UT-Zap50K | 512 | 50,025 | 49,025 |
 
-Methods: Exact FlatIP (ground truth) vs HNSW vs IVF-PQ vs LSH, with
-Recall@K, Precision@K and mAP@K (K = 5/10/20), latency, QPS, build time
-and index size.
+Methods: Exact FlatIP (ground truth) vs LSH vs IVF-Flat vs IVF-PQ vs
+HNSW vs HNSW-PQ, with Recall@K, Precision@K and mAP@K (K = 5/10/20),
+latency, QPS, build time and index size. IVF and HNSW each run with and
+without product quantization (PQ), so the effect of the index structure
+(clusters vs graph) and of compression can be read separately.
 
 **Why the 2x2 grid:** the original experiments paired each dataset with
 one model (ViT on COCO, ResNet18 on Zappos), so a difference between them
@@ -161,13 +163,13 @@ Every run rebuilds `results/combined_ann_results.csv` from all available
 
 The protocol is identical for every configuration: 1,000 held-out
 queries (seed 42), exact top-20 ground truth, single-threaded search,
-all-core builds, the same HNSW / IVF / LSH sweeps. The only differences
+all-core builds, the same LSH / IVF / HNSW sweeps. The only differences
 are forced by the data and live in `datasets.py`:
 
 - `pq-m` 48 for ViT (768-d) and 32 for ResNet18 (512-d), because FAISS
   needs `dimension % pq_m == 0`.
-- IVF-PQ trains on a 50k gallery sample for COCO and on the full gallery
-  (49,025 rows) for Zappos.
+- IVF-Flat, IVF-PQ and HNSW-PQ train on the same 50k gallery sample for
+  COCO and on the full gallery (49,025 rows) for Zappos.
 
 Searches are timed single-threaded. The script also pins the BLAS thread
 pool (`OPENBLAS_NUM_THREADS` / `MKL_NUM_THREADS` = 1), because exact
@@ -199,7 +201,7 @@ Outputs per configuration in `results/<config>/`:
 |---|---|
 | `ann_results.json` / `.csv` | per method/setting: Recall/Precision/mAP @5/10/20, latency, QPS, build time, index size |
 | `per_query/exact_top20.npy` | exact top-20 gallery rows per query (ground truth) |
-| `per_query/<setting>_top20.npy` | top-20 per ANN setting (`hnsw_ef*`, `ivfpq_np*`, `lsh_nb*`) |
+| `per_query/<setting>_top20.npy` | top-20 per ANN setting (`lsh_nb*`, `ivfflat_np*`, `ivfpq_np*`, `hnsw_ef*`, `hnswpq_ef*`) |
 | `per_query/query_rows.npy`, `gallery_rows.npy` | the fixed split |
 | `visual-comparisons/` | same-query grids (from the notebook) |
 
@@ -251,8 +253,9 @@ When reading the results:
 ## Notes
 
 - Vectors are L2-normalized, so `IndexFlatIP` computes cosine similarity
-  directly; `IndexLSH` ranks by L2, which equals cosine ranking on
-  normalized vectors.
+  directly; `IndexLSH` and `IndexHNSWPQ` rank by L2, which equals cosine
+  ranking on normalized vectors. (`IndexHNSWPQ` is left on L2 because
+  with `METRIC_INNER_PRODUCT` it returns wrong neighbours in FAISS 1.15.)
 - Dataset links are conveniences for this working repository only. The
   final project submission ZIP must contain no datasets, models or
   cloud-hosted links (course requirement).

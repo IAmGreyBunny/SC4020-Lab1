@@ -6,15 +6,21 @@ experiments/resnet18-zappos) into a single script and runs it on the full
 data:
 
 - Exact FlatIP : brute-force baseline, produces the ground truth
-- HNSW         : graph-based ANN, efSearch sweep
-- IVF-PQ       : clustered + compressed ANN, nprobe sweep
 - LSH          : binary hashing (FAISS IndexLSH), nbits sweep
+- IVF-Flat     : clustered ANN over full vectors, nprobe sweep
+- IVF-PQ       : clustered + PQ-compressed ANN, nprobe sweep
+- HNSW         : graph-based ANN over full vectors, efSearch sweep
+- HNSW-PQ      : graph-based + PQ-compressed ANN, efSearch sweep
+
+IVF and HNSW each run with and without product quantization, so the
+effect of the index structure and of compression can be read separately.
 
 Setup per configuration: 1,000 query vectors are held out (seed 42); the
-remaining vectors form the gallery. IVF-PQ is trained only on gallery
-vectors. All vectors are L2-normalized, so inner product equals cosine
-similarity; on normalized vectors L2 ranking equals cosine ranking, so LSH
-(L2 by default in FAISS) is comparable to the IP-based methods.
+remaining vectors form the gallery. IVF-Flat, IVF-PQ and HNSW-PQ are
+trained on the same gallery sample. All vectors are L2-normalized, so inner
+product equals cosine similarity; on normalized vectors L2 ranking equals
+cosine ranking, so LSH and HNSW-PQ (both L2 in FAISS) are comparable to the
+IP-based methods.
 
 Accuracy metrics, all at K = 5/10/20 with the exact top-K as the relevant
 set: Recall@K, Precision@K (equal to Recall@K, since both lists hold K
@@ -232,6 +238,101 @@ def run_benchmark(key, cfg, args):
     print(f"exact: {search_seconds / args.num_queries * 1000:.3f} ms/query", flush=True)
     del exact
 
+    # ---------------- LSH ----------------
+    for nbits in lsh_nbits_list:
+        print(f"building LSH nbits={nbits}...", flush=True)
+        set_threads(build_threads)
+        start = time.perf_counter()
+        # FAISS IndexLSH hashes to binary codes and ranks by Hamming
+        # distance, then refines with exact L2. On L2-normalized vectors
+        # L2 ranking equals cosine ranking, so results are comparable.
+        lsh = faiss.IndexLSH(dimension, nbits)
+        lsh.add(gallery)
+        lsh_build_seconds = time.perf_counter() - start
+
+        set_threads(args.threads)
+        indices, search_seconds = timed_search(lsh, queries, args.k_gt, args.repeats)
+        np.save(per_query_dir / f"lsh_nb{nbits}_top20.npy", indices)
+        results.append(
+            result_row(
+                "LSH",
+                {"nbits": nbits},
+                lsh_build_seconds, search_seconds, args.num_queries,
+                lsh, ground_truth, indices,
+            )
+        )
+        print(f"lsh nbits={nbits}: {format_metrics(results[-1])}", flush=True)
+        del lsh
+
+    # IVF-Flat, IVF-PQ and HNSW-PQ all train on the same gallery sample
+    # (unsupervised, no labels involved).
+    sample_rng = np.random.default_rng(args.seed + 1)
+    sample_size = min(args.ivf_train_sample, len(gallery_rows))
+    train_rows = sample_rng.choice(len(gallery_rows), size=sample_size, replace=False)
+    train_vectors = np.ascontiguousarray(gallery[train_rows])
+
+    # ---------------- IVF-Flat ----------------
+    print("building IVF-Flat (train + add)...", flush=True)
+    set_threads(build_threads)
+    start = time.perf_counter()
+    quantizer = faiss.IndexFlatIP(dimension)
+    ivfflat = faiss.IndexIVFFlat(
+        quantizer, dimension, args.ivf_nlist, faiss.METRIC_INNER_PRODUCT,
+    )
+    ivfflat.train(train_vectors)
+    ivfflat.add(gallery)
+    ivfflat_build_seconds = time.perf_counter() - start
+    print(f"ivfflat build: {ivfflat_build_seconds:.1f}s", flush=True)
+
+    set_threads(args.threads)
+    for nprobe in nprobe_list:
+        ivfflat.nprobe = nprobe
+        indices, search_seconds = timed_search(ivfflat, queries, args.k_gt, args.repeats)
+        np.save(per_query_dir / f"ivfflat_np{nprobe}_top20.npy", indices)
+        results.append(
+            result_row(
+                "IVF-Flat",
+                {"nlist": args.ivf_nlist, "nprobe": nprobe,
+                 "train_sample": sample_size},
+                ivfflat_build_seconds, search_seconds, args.num_queries,
+                ivfflat, ground_truth, indices,
+            )
+        )
+        print(f"ivfflat nprobe={nprobe}: {format_metrics(results[-1])}", flush=True)
+    del ivfflat
+
+    # ---------------- IVF-PQ ----------------
+    print("building IVF-PQ (train + add)...", flush=True)
+    set_threads(build_threads)
+    start = time.perf_counter()
+    quantizer = faiss.IndexFlatIP(dimension)
+    ivfpq = faiss.IndexIVFPQ(
+        quantizer, dimension, args.ivf_nlist, pq_m, args.pq_nbits,
+        faiss.METRIC_INNER_PRODUCT,
+    )
+    ivfpq.train(train_vectors)
+    ivfpq.add(gallery)
+    ivfpq_build_seconds = time.perf_counter() - start
+    print(f"ivfpq build: {ivfpq_build_seconds:.1f}s", flush=True)
+
+    set_threads(args.threads)
+    for nprobe in nprobe_list:
+        ivfpq.nprobe = nprobe
+        indices, search_seconds = timed_search(ivfpq, queries, args.k_gt, args.repeats)
+        np.save(per_query_dir / f"ivfpq_np{nprobe}_top20.npy", indices)
+        results.append(
+            result_row(
+                "IVF-PQ",
+                {"nlist": args.ivf_nlist, "nprobe": nprobe,
+                 "m": pq_m, "nbits": args.pq_nbits,
+                 "train_sample": sample_size},
+                ivfpq_build_seconds, search_seconds, args.num_queries,
+                ivfpq, ground_truth, indices,
+            )
+        )
+        print(f"ivfpq nprobe={nprobe}: {format_metrics(results[-1])}", flush=True)
+    del ivfpq
+
     # ---------------- HNSW ----------------
     print("building HNSW...", flush=True)
     set_threads(build_threads)
@@ -259,69 +360,37 @@ def run_benchmark(key, cfg, args):
         print(f"hnsw efSearch={ef_search}: {format_metrics(results[-1])}", flush=True)
     del hnsw
 
-    # ---------------- IVF-PQ ----------------
-    print("building IVF-PQ (train + add)...", flush=True)
+    # ---------------- HNSW-PQ ----------------
+    print("building HNSW-PQ (train + add)...", flush=True)
     set_threads(build_threads)
-    sample_rng = np.random.default_rng(args.seed + 1)
-    sample_size = min(args.ivf_train_sample, len(gallery_rows))
-    train_rows = sample_rng.choice(len(gallery_rows), size=sample_size, replace=False)
-    train_vectors = np.ascontiguousarray(gallery[train_rows])
-
     start = time.perf_counter()
-    quantizer = faiss.IndexFlatIP(dimension)
-    ivfpq = faiss.IndexIVFPQ(
-        quantizer, dimension, args.ivf_nlist, pq_m, args.pq_nbits,
-        faiss.METRIC_INNER_PRODUCT,
-    )
-    # Unsupervised training on gallery vectors only (no labels involved).
-    ivfpq.train(train_vectors)
-    ivfpq.add(gallery)
-    ivfpq_build_seconds = time.perf_counter() - start
-    print(f"ivfpq build: {ivfpq_build_seconds:.1f}s", flush=True)
+    # Default L2 metric: IndexHNSWPQ with METRIC_INNER_PRODUCT returns wrong
+    # neighbours (FAISS 1.15). On L2-normalized vectors L2 ranking equals
+    # cosine ranking, as for LSH.
+    hnswpq = faiss.IndexHNSWPQ(dimension, pq_m, args.hnsw_m, args.pq_nbits)
+    hnswpq.hnsw.efConstruction = args.hnsw_ef_construction
+    hnswpq.train(train_vectors)
+    hnswpq.add(gallery)
+    hnswpq_build_seconds = time.perf_counter() - start
+    print(f"hnswpq build: {hnswpq_build_seconds:.1f}s", flush=True)
 
     set_threads(args.threads)
-    for nprobe in nprobe_list:
-        ivfpq.nprobe = nprobe
-        indices, search_seconds = timed_search(ivfpq, queries, args.k_gt, args.repeats)
-        np.save(per_query_dir / f"ivfpq_np{nprobe}_top20.npy", indices)
+    for ef_search in hnsw_ef_list:
+        hnswpq.hnsw.efSearch = ef_search
+        indices, search_seconds = timed_search(hnswpq, queries, args.k_gt, args.repeats)
+        np.save(per_query_dir / f"hnswpq_ef{ef_search}_top20.npy", indices)
         results.append(
             result_row(
-                "IVF-PQ",
-                {"nlist": args.ivf_nlist, "nprobe": nprobe,
-                 "m": pq_m, "nbits": args.pq_nbits,
+                "HNSW-PQ",
+                {"M": args.hnsw_m, "efConstruction": args.hnsw_ef_construction,
+                 "efSearch": ef_search, "m": pq_m, "nbits": args.pq_nbits,
                  "train_sample": sample_size},
-                ivfpq_build_seconds, search_seconds, args.num_queries,
-                ivfpq, ground_truth, indices,
+                hnswpq_build_seconds, search_seconds, args.num_queries,
+                hnswpq, ground_truth, indices,
             )
         )
-        print(f"ivfpq nprobe={nprobe}: {format_metrics(results[-1])}", flush=True)
-    del ivfpq
-
-    # ---------------- LSH ----------------
-    for nbits in lsh_nbits_list:
-        print(f"building LSH nbits={nbits}...", flush=True)
-        set_threads(build_threads)
-        start = time.perf_counter()
-        # FAISS IndexLSH hashes to binary codes and ranks by Hamming
-        # distance, then refines with exact L2. On L2-normalized vectors
-        # L2 ranking equals cosine ranking, so results are comparable.
-        lsh = faiss.IndexLSH(dimension, nbits)
-        lsh.add(gallery)
-        lsh_build_seconds = time.perf_counter() - start
-
-        set_threads(args.threads)
-        indices, search_seconds = timed_search(lsh, queries, args.k_gt, args.repeats)
-        np.save(per_query_dir / f"lsh_nb{nbits}_top20.npy", indices)
-        results.append(
-            result_row(
-                "LSH",
-                {"nbits": nbits},
-                lsh_build_seconds, search_seconds, args.num_queries,
-                lsh, ground_truth, indices,
-            )
-        )
-        print(f"lsh nbits={nbits}: {format_metrics(results[-1])}", flush=True)
-        del lsh
+        print(f"hnswpq efSearch={ef_search}: {format_metrics(results[-1])}", flush=True)
+    del hnswpq
 
     # ---------------- Save aggregate results ----------------
     metadata = {
