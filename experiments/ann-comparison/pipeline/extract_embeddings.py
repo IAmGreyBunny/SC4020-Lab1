@@ -31,57 +31,10 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from PIL import Image
-from torchvision import models
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-
-MODELS = {
-    "vit": {"dimension": 768, "batch_size": 64},
-    "resnet": {"dimension": 512, "batch_size": 128},
-}
-
-DATASETS = {
-    "coco": {
-        "images_dir": REPO_ROOT / "data" / "circo",
-        "output_dir": REPO_ROOT / "data" / "circo",
-    },
-    "zappos": {
-        "images_dir": REPO_ROOT / "data" / "zappos" / "ut-zap50k-images" / "ut-zap50k-images",
-        "output_dir": REPO_ROOT / "data" / "zappos",
-    },
-}
-
-
-def create_model(name):
-    if name == "vit":
-        weights = models.ViT_B_16_Weights.DEFAULT
-        model = models.vit_b_16(weights=weights)
-        # Drop the classifier head: the model returns the 768-d embedding.
-        model.heads = torch.nn.Identity()
-        weights_name = "ViT_B_16_Weights.DEFAULT"
-    else:
-        weights = models.ResNet18_Weights.DEFAULT
-        model = models.resnet18(weights=weights)
-        # Drop the classifier: the model returns 512-d avgpool features.
-        model.fc = torch.nn.Identity()
-        weights_name = "ResNet18_Weights.DEFAULT"
-    return model.eval(), weights.transforms(), weights_name
-
-
-def list_images(dataset, images_dir):
-    if dataset == "coco":
-        # COCO filenames are zero-padded ids, so filename order == id order.
-        paths = sorted(
-            (p for p in images_dir.iterdir() if p.suffix.lower() in (".jpg", ".jpeg")),
-            key=lambda p: p.name,
-        )
-        ids = [int(p.stem) for p in paths]
-    else:
-        # UT-Zap50K has no integer ids: sort by full path string and number
-        # the rows, exactly as pipeline/zappos/common.py:prepare_data does.
-        paths = sorted(images_dir.rglob("*.jpg"), key=lambda p: str(p))
-        ids = list(range(len(paths)))
-    return paths, ids
+# Models, image ordering and the dataset registry live in models.py so this
+# extractor and corruption.py share a single definition; see models.py.
+from models import DATASETS, MODELS, create_model, list_images
 
 
 def main():
