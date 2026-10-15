@@ -453,7 +453,7 @@ def main():
     parser.add_argument("--ivf-nprobe", default="1,4,8,16,32,64")
     parser.add_argument("--pq-nbits", type=int, default=8)
     parser.add_argument("--ivf-train-sample", type=int, default=50000)
-    parser.add_argument("--lsh-nbits", default="256,512")
+    parser.add_argument("--lsh-nbits", default="64,128,256,512,1024,2048")
     args = parser.parse_args()
 
     keys = list(CONFIGS) if args.config == "all" else [args.config]
