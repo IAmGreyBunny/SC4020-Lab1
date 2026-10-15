@@ -27,6 +27,8 @@ Outputs per configuration in results/<config>/robustness/:
 - corruption_params.json           models, transforms, seed, query rows
 - corrupted_query_embeddings.npy   cached variant vectors (git-ignored)
 - corrupted_query_variants.csv     variant metadata matching the npy
+- corrupted_query_top20.npy        top-k gallery rows per variant (for the notebook grid)
+- corrupted_query_clean_top20.npy  top-k gallery rows of the clean query per query
 
 And results/robustness_corruption_combined.csv across all configurations.
 
@@ -267,6 +269,8 @@ def run_config(key, cfg, args, selected):
     frame.to_csv(out_dir / "corruption_per_query.csv", index=False)
     summary.to_csv(out_dir / "corruption_summary.csv", index=False)
     np.save(out_dir / "corrupted_query_embeddings.npy", vectors)
+    np.save(out_dir / "corrupted_query_top20.npy", variant_indices)
+    np.save(out_dir / "corrupted_query_clean_top20.npy", gt_indices)
     pd.DataFrame(meta).assign(image_id=[int(ids[query_rows[m["query"]]]) for m in meta]).to_csv(
         out_dir / "corrupted_query_variants.csv", index=False
     )
