@@ -1,4 +1,4 @@
-"""Effect of PQ compression on IVF-PQ and HNSW-PQ (Zappos configurations).
+"""Effect of PQ compression on IVF-PQ and HNSW-PQ (every configuration).
 
 Varies only the PQ code size m: the number of sub-quantizers, each storing
 an 8-bit code, so every vector takes m bytes. The same m gives both models
@@ -36,8 +36,6 @@ import pandas as pd
 
 from datasets import CONFIGS, results_dir
 from scoring import knee_score
-
-ZAPPOS_CONFIGS = [key for key, cfg in CONFIGS.items() if cfg["dataset"] == "zappos"]
 
 
 def knee_pick(key, algorithm, param):
@@ -165,7 +163,7 @@ def run_sweep(key, cfg, args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", choices=[*ZAPPOS_CONFIGS, "all-zappos"], default="all-zappos")
+    parser.add_argument("--config", choices=[*CONFIGS, "all"], default="all")
     parser.add_argument("--m", default="8,16,32,64,128",
                         help="PQ sub-quantizers (bytes per vector); must divide the dimension")
     parser.add_argument("--nprobe", type=int, help="override the IVF-Flat knee pick")
@@ -183,7 +181,7 @@ def main():
     parser.add_argument("--ivf-train-sample", type=int, default=50000)
     args = parser.parse_args()
 
-    keys = ZAPPOS_CONFIGS if args.config == "all-zappos" else [args.config]
+    keys = list(CONFIGS) if args.config == "all" else [args.config]
     for key in keys:
         run_sweep(key, CONFIGS[key], args)
     print("\nDONE", flush=True)
