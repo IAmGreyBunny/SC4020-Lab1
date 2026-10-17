@@ -448,7 +448,7 @@ def main():
     parser.add_argument("--build-threads", type=int, default=0)
     parser.add_argument("--hnsw-m", type=int, default=32)
     parser.add_argument("--hnsw-ef-construction", type=int, default=200)
-    parser.add_argument("--hnsw-ef-search", default="16,32,64,128,256")
+    parser.add_argument("--hnsw-ef-search", default="32,64,128,256,512")
     parser.add_argument("--ivf-nlist", type=int, default=256)
     parser.add_argument("--ivf-nprobe", default="1,4,8,16,32,64")
     parser.add_argument("--pq-nbits", type=int, default=8)
