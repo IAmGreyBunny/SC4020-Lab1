@@ -58,8 +58,9 @@ COCO JPGs (data/circo/)          UT-Zap50K JPGs (data/zappos/ut-zap50k-images/..
              |            results/index_robustness_combined.csv
              \                         /
               \                       /
-    compare_methods.ipynb   index_robustness.ipynb
-    (Sections 1-7 ANN, Section 8 corruption)
+    compare_methods.ipynb   (Sections 1-7 ANN; Section 8 corruption:
+                            Ground-Truth Shift + ANN index view)
+    index_robustness.ipynb  (standalone companion to the Section 8 index view)
 ```
 
 ## Files
@@ -71,7 +72,7 @@ experiments/ann-comparison/
 ├── datasets.py               # registry of the four configs: paths, dim, pq-m
 ├── benchmark_ann.py          # ONE benchmark for every config
 ├── compare_methods.ipynb     # ONE notebook comparing every config
-├── index_robustness.ipynb    # ANN robustness under query corruption
+├── index_robustness.ipynb    # standalone companion to its Section 8 index view
 ├── pipeline/
 │   ├── extract_embeddings.py # ONE extractor: --model x --dataset (resumable)
 │   ├── models.py             # shared: create_model, list_images, embed_images
@@ -328,21 +329,24 @@ Sections:
    method (`SAME`/`DIFF` marks where the models disagree),
 6. Zappos category / subcategory precision@10 for both models,
 7. sanity checks (incl. that both models used identical queries),
-8. **corruption robustness** (Step 3b): drift and Recall@K / mAP@K vs
-   corruption intensity, per transform, all four configurations, plus
-   example corrupted queries.
+8. **corruption robustness** (Steps 3b + 3c): one corrupted-query sweep,
+   measured with exact search (the **Ground-Truth Shift** baseline: embedding
+   drift and Recall@K / mAP@K vs corruption intensity, per transform, all
+   four configurations) and with the ANN indexes - IVF-Flat and HNSW at
+   their knee settings - whose **Fidelity**, **End-to-End** (with the
+   Ground-Truth Shift overlaid) and **Stability** are plotted the same way,
+   plus example corrupted queries (the Step 3c results also cover the PQ
+   variants; `ALGORITHMS` in the index-view setup cell selects which are
+   shown).
 
-Sections 1-4 work from `ann_results.json` alone. Sections 5-8 need the
+Sections 1-4 work from `ann_results.json` alone. Sections 5-7 need the
 local `per_query/` files, the embeddings and the images; anything missing
-is skipped with a note. Section 8 additionally needs the
-`results/<config>/robustness/` files from Step 3b.
-
-The ANN index-robustness experiment of Step 3c has its own notebook,
-`index_robustness.ipynb` (settings, fidelity / end-to-end / stability vs
-corruption intensity, and the additional loss each index causes on top of the
-model's own). It needs the `results/<config>/index_robustness/` files from
-Step 3c and, for the exact reference overlay, `robustness_corruption_combined.csv`
-from Step 3b.
+is skipped with a note. Section 8 needs the
+`results/<config>/robustness/` files from Step 3b for the Ground-Truth
+Shift (the example grid also needs its per-variant local files) and the
+`results/<config>/index_robustness/` files from Step 3c for the index
+view. `index_robustness.ipynb` is a standalone companion to the index view of
+Section 8 reading the same files.
 
 ## Results
 
