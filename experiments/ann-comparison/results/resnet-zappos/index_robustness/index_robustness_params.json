@@ -1,0 +1,71 @@
+{
+  "config": "resnet-zappos",
+  "model": "resnet",
+  "dataset": "zappos",
+  "dimension": 512,
+  "num_queries": 200,
+  "num_variants": 6800,
+  "variants_per_query": 34,
+  "k_gt": 20,
+  "metric_ks": [
+    5,
+    10,
+    20
+  ],
+  "benchmark_seed": 42,
+  "gallery_size": 49025,
+  "split_source": "reproduced from ann_results.json (seed 42)",
+  "embedding_file": "/home/dashielle/SC4020-Lab1/data/zappos/resnet_embeddings.npy",
+  "ann_results_file": "/home/dashielle/SC4020-Lab1/experiments/ann-comparison/results/resnet-zappos/ann_results.json",
+  "corruption_cache_dir": "/home/dashielle/SC4020-Lab1/experiments/ann-comparison/results/resnet-zappos/robustness",
+  "setting_source": "knee-score picks (scoring.knee_score) of the full-vector partners in ann_results.json; IVF-PQ shares IVF-Flat's nprobe and HNSW-PQ shares HNSW's efSearch (pq_sweep.py convention)",
+  "nprobe_override": null,
+  "ef_search_override": null,
+  "settings": {
+    "IVF-Flat": {
+      "nlist": 256,
+      "nprobe": 8,
+      "train_sample": 49025
+    },
+    "IVF-PQ": {
+      "nlist": 256,
+      "nprobe": 8,
+      "m": 32,
+      "nbits": 8,
+      "train_sample": 49025
+    },
+    "HNSW": {
+      "M": 32,
+      "efConstruction": 200,
+      "efSearch": 32
+    },
+    "HNSW-PQ": {
+      "M": 32,
+      "efConstruction": 200,
+      "efSearch": 32,
+      "m": 32,
+      "nbits": 8,
+      "train_sample": 49025
+    }
+  },
+  "methods": [
+    "IVF-Flat",
+    "IVF-PQ",
+    "HNSW",
+    "HNSW-PQ"
+  ],
+  "search_threads": 1,
+  "build_threads": 1,
+  "repeats": 5,
+  "faiss_version": "1.15.0",
+  "self_check": {
+    "clean_exact_reference_recall": 1.0,
+    "original_cosine_min": 0.999999
+  },
+  "topk_files": {
+    "IVF-Flat": "per_query/ivfflat_np8_top20.npy",
+    "IVF-PQ": "per_query/ivfpq_np8_top20.npy",
+    "HNSW": "per_query/hnsw_ef32_top20.npy",
+    "HNSW-PQ": "per_query/hnswpq_ef32_top20.npy"
+  }
+}

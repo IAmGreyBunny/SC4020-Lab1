@@ -1,2 +1,5 @@
 per_query/
 */per_query/
+*/robustness/*.npy
+*/robustness/corruption_per_query.csv
+*/robustness/corrupted_query_variants.csv
