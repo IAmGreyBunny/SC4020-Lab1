@@ -1,7 +1,6 @@
 """Benchmark ANN search methods on every model x dataset configuration.
 
-Merges the two per-dataset benchmarks (experiments/vit-coco-faiss and
-experiments/resnet18-zappos) into a single script and runs it on the full
+Runs one benchmark protocol on the full
 2x2 grid {ViT-B/16, ResNet18} x {COCO, Zappos}. Compares, on identical
 data:
 

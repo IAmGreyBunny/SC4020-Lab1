@@ -1,6 +1,6 @@
 """Registry of the 2x2 model x dataset configurations.
 
-Shared by benchmark_ann.py and compare_methods.ipynb. Paths are absolute,
+Shared by the scripts and notebooks in this folder. Paths are absolute,
 resolved from the repository root. Every configuration uses the same
 benchmark protocol; only the data-forced settings (dimension, PQ
 sub-quantizers) differ. Embeddings come from pipeline/extract_embeddings.py.

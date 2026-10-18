@@ -69,7 +69,7 @@ def list_images(dataset, images_dir):
         ids = [int(p.stem) for p in paths]
     else:
         # UT-Zap50K has no integer ids: sort by full path string and number
-        # the rows, exactly as pipeline/zappos/common.py:prepare_data does.
+        # the rows, exactly as the team's original ResNet/Zappos extractor did.
         paths = sorted(images_dir.rglob("*.jpg"), key=lambda p: str(p))
         ids = list(range(len(paths)))
     return paths, ids

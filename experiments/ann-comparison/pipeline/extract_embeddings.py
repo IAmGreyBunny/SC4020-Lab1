@@ -1,9 +1,9 @@
 """Generate image embeddings for any model x dataset combination.
 
 One extractor for the 2x2 comparison: {ViT-B/16, ResNet18} x {COCO,
-UT-Zap50K}. It merges the two per-dataset extractors in pipeline/coco and
-pipeline/zappos and keeps their conventions, so outputs are drop-in
-compatible with the files the team already shares:
+UT-Zap50K}. It replaces the team's original per-dataset extractors and
+keeps their conventions, so outputs are drop-in compatible with the files
+the team already shares:
 
 - models   : torchvision pretrained weights (DEFAULT), classifier removed
              (ViT heads / ResNet fc -> Identity), weights.transforms()
