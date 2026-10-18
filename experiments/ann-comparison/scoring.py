@@ -11,6 +11,9 @@ Two independent scores, highest wins:
   memory in one weighted sum.
 - knee_score: the point of diminishing returns on the accuracy vs latency
   curve of each sweep (speed and accuracy only).
+
+rank_methods ranks every (model, method) pair of each dataset, each at its
+best setting, by one of these scores.
 """
 
 import numpy as np
@@ -20,7 +23,10 @@ ACC_METRIC = "recall_at_10"
 # Accuracy term of the weighted score: Recall and mAP at 5 / 10 / 20, equally
 # weighted (Precision@K always equals Recall@K here, so it would count recall twice).
 ACC_METRICS = [f"{m}_at_{k}" for m in ("recall", "map") for k in (5, 10, 20)]
-WEIGHTS = {"accuracy": 1 / 3, "speed": 1 / 3, "memory": 1 / 3}
+# The single nice-number set whose picks come closest to the knee picks
+# (15 of 20 per config). HNSW is the exception: its recall barely moves with
+# efSearch, so the weighted sum always prefers its fastest setting.
+WEIGHTS = {"accuracy": 0.6, "speed": 0.3, "memory": 0.1}
 RATIO_REF = 100   # a 100x speedup / compression scores 1
 
 
@@ -70,3 +76,10 @@ def best_overall(df, score, metric=ACC_METRIC):
     means = (swept.groupby(["algorithm", "param_value"])
              [[score, metric, "speedup", "compression"]].mean().reset_index())
     return means.loc[means.groupby("algorithm")[score].idxmax()].reset_index(drop=True)
+
+
+def rank_methods(df, score, top=5):
+    # Every (model, method) pair of each dataset at its best setting, sorted
+    # by score (highest first), top `top` per dataset. Needs a `dataset` column.
+    best = best_per_config(df, score).sort_values(score, ascending=False)
+    return best.groupby("dataset", sort=False).head(top)
