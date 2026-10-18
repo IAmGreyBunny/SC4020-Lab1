@@ -13,7 +13,8 @@ Two independent scores, highest wins:
   curve of each sweep (speed and accuracy only).
 
 rank_methods ranks every (model, method) pair of each dataset, each at its
-best setting, by one of these scores.
+best setting, by one of these scores; rank_settings ranks every
+(model, method, setting) row instead.
 """
 
 import numpy as np
@@ -78,8 +79,18 @@ def best_overall(df, score, metric=ACC_METRIC):
     return means.loc[means.groupby("algorithm")[score].idxmax()].reset_index(drop=True)
 
 
+def _top_per_dataset(df, score, top):
+    # Sorted by score (highest first), top `top` rows of each dataset.
+    return df.sort_values(score, ascending=False).groupby("dataset", sort=False).head(top)
+
+
 def rank_methods(df, score, top=5):
-    # Every (model, method) pair of each dataset at its best setting, sorted
-    # by score (highest first), top `top` per dataset. Needs a `dataset` column.
-    best = best_per_config(df, score).sort_values(score, ascending=False)
-    return best.groupby("dataset", sort=False).head(top)
+    # Every (model, method) pair of each dataset at its best setting.
+    # Needs a `dataset` column.
+    return _top_per_dataset(best_per_config(df, score), score, top)
+
+
+def rank_settings(df, score, top=5):
+    # Every swept (model, method, setting) row of each dataset, so one method
+    # can appear more than once. Needs a `dataset` column.
+    return _top_per_dataset(df[df["param_value"].notna()], score, top)
