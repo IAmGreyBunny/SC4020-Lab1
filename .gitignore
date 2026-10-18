@@ -11,6 +11,8 @@ data/**/*.jpg
 data/**/*.jpeg
 data/**/*.png
 data/**/*.csv
+data/**/*.npy
+data/**/*.pkl
 
 ## PyTorch
 

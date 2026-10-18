@@ -7,6 +7,8 @@ All code is in `experiments/ann-comparison/`. Run every command from the reposit
 
 ## Setup
 
+Tested with Python 3.12.
+
 ```bash
 python -m venv venv
 source venv/bin/activate        # Linux/macOS
@@ -48,7 +50,11 @@ Results are written to `experiments/ann-comparison/results/`.
 
 ## 4. Figures and tables
 
-Open and run all cells of:
+Open and run all cells of `experiments/ann-comparison/visualize_results.ipynb`:
+every figure (written to `media/`) and the best-setting and ranking tables.
 
-- `experiments/ann-comparison/visualize_results.ipynb`: every figure (saved to `media/`) and the best-setting and ranking tables.
-- `experiments/ann-comparison/index_robustness.ipynb`: ANN index robustness under query corruption.
+The repository ships the lightweight CSV/JSON summaries under
+`experiments/ann-comparison/results/`, so the notebook reproduces every figure
+without re-running the experiments. The two query-and-answers grids additionally
+need the dataset images and the corrupted-query caches produced by
+`experiments/ann-comparison/pipeline/corruption.py`.
