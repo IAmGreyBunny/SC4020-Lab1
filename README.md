@@ -9,7 +9,9 @@ All code is in `experiments/ann-comparison/`. Run every command from the reposit
 
 ```bash
 python -m venv venv
-venv/Scripts/python -m pip install -r experiments/ann-comparison/requirements.txt
+source venv/bin/activate        # Linux/macOS
+venv\Scripts\activate           # Windows
+python -m pip install -r requirements.txt
 ```
 
 For GPU embedding extraction, install the CUDA build of PyTorch instead.
